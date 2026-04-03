@@ -17,7 +17,7 @@
 </h3>
 
 <h3 align="center">
-  <a href="https://arxiv.org/abs/XXXX.XXXXX">[Paper]</a> | 
+  <a href="https://arxiv.org/abs/2604.02331">[Paper]</a> | 
   <a href="https://bartn8.github.io/eventhub/">[Project Page]</a>
 </h3>
 
