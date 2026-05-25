@@ -1,0 +1,31 @@
+{ 
+    "type": "root",
+    "pos_trajectory_child": {
+        "type": "leaf",
+        "trajectory_type": "manual",
+        "trajectory_args": {
+            "amplitude": [0.0, 0.0, 0.0]
+        }
+    },
+    "rot_degree_trajectory_child":{
+        "type": "concat",
+        "children": [
+            {
+                "type":"leaf",
+                "trajectory_type": "sine",
+                "trajectory_args": {
+                    "amplitude": [0.5, 0.0, 0.0],
+                    "freq_hz": [2.0, 0.0, 0.0]
+                }
+            },
+            {
+                "type":"leaf",
+                "trajectory_type": "sine",
+                "trajectory_args": {
+                    "amplitude": [0.0, 0.5, 0.0],
+                    "freq_hz": [0.0, 2.0, 0.0]
+                }                
+            }
+        ]
+    }
+}

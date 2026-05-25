@@ -1,0 +1,81 @@
+{ 
+    "type": "root",
+    "pos_trajectory_child": {
+        "type": "concat",
+        "children": [
+            {
+                "type": "sum",
+                "children": [
+                    {
+                        "type":"leaf",
+                        "trajectory_type": "spiral",
+                        "trajectory_args": {
+                            "amplitude": [0.125, 0.125],
+                            "freq_hz": 16.0
+                        }
+                    },
+                    {
+                        "type":"leaf",
+                        "trajectory_type": "sine",
+                        "trajectory_args": {
+                            "amplitude": [0.0, 0.0, 0.125],
+                            "freq_hz": [0.0, 0.0, 8.0]
+                        }                
+                    }                    
+                ]
+            },
+            {
+                "type": "sum",
+                "children": [
+                    {
+                        "type":"leaf",
+                        "trajectory_type": "spiral",
+                        "trajectory_args": {
+                            "amplitude": [0.125, 0.125],
+                            "freq_hz": 16.0,
+                            "invert": true
+                        }
+                    },
+                    {
+                        "type":"leaf",
+                        "trajectory_type": "sine",
+                        "trajectory_args": {
+                            "amplitude": [0.0, 0.0, 0.125],
+                            "freq_hz": [0.0, 0.0, 8.0],
+                            "invert": true
+                        }                
+                    }                    
+                ]
+            }
+        ]
+    },
+    "rot_degree_trajectory_child":{
+        "type": "concat",
+        "children": [
+            {
+                "type":"leaf",
+                "trajectory_type": "sine",
+                "trajectory_args": {
+                    "amplitude": [3.0, 0.0, 0.0],
+                    "freq_hz": [8.0, 0.0, 0.0]
+                }
+            },
+            {
+                "type":"leaf",
+                "trajectory_type": "sine",
+                "trajectory_args": {
+                    "amplitude": [0.0, 3.0, 0.0],
+                    "freq_hz": [0.0, 8.0, 0.0]
+                }                
+            },
+            {
+                "type":"leaf",
+                "trajectory_type": "sine",
+                "trajectory_args": {
+                    "amplitude": [0.0, 0.0, 3.0],
+                    "freq_hz": [0.0, 0.0, 8.0]
+                }                
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+[
+    {
+        "null": {
+            "lookat": {
+                "type": "cosine",
+                "args": {
+                    "freq_hz": [1.0, 0.0, 1.0],
+                    "rot_axis_degree_max": [20.0, 0.0, 45.0]
+                }
+            }
+        }
+    }   
+]

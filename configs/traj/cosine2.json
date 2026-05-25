@@ -1,0 +1,56 @@
+[
+    {
+        "cosine": {
+            "max_radius": 0.1,
+            "init":  [0.0, 0.0, 0.5],
+            "offset":   [0.0, 0.0, -0.5],
+            "freq_hz": [10.0, 0.0, 0.0],
+            "phase": 0.0,
+            "relative_offset": false,
+            "z_project": false,
+            "lookat": {
+                "type": "cosine",
+                "args": {
+                    "freq_hz": [1.0, 0.0, 1.0],
+                    "rot_axis_degree_max": [20.0, 0.0, 45.0]
+                }
+            }
+        }
+    },    
+    {
+        "cosine": {
+            "max_radius": 0.1,
+            "init":  [0.0, 0.0, 0.0],
+            "offset":   [0.0, 0.0, 0.25],
+            "freq_hz": [0.0, 10.0, 0.0],
+            "phase": 0.0,
+            "relative_offset": false,
+            "z_project": false,
+            "lookat": {
+                "type": "cosine",
+                "args": {
+                    "freq_hz": [1.0, 0.0, 1.0],
+                    "rot_axis_degree_max": [20.0, 0.0, 45.0]
+                }
+            }
+        }
+    },
+    {
+        "cosine": {
+            "max_radius": 0.1,
+            "init":  [0.0, 0.0, 0.0],
+            "offset":   [0.0, 0.0, -0.25],
+            "freq_hz": [0.0, 0.0, 10.0],
+            "phase": 0.0,
+            "relative_offset": false,
+            "z_project": false,
+            "lookat": {
+                "type": "cosine",
+                "args": {
+                    "freq_hz": [1.0, 0.0, 1.0],
+                    "rot_axis_degree_max": [20.0, 0.0, 45.0]
+                }
+            }
+        }
+    }
+]

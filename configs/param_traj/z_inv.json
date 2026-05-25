@@ -1,0 +1,18 @@
+{ 
+    "type": "root",
+    "pos_trajectory_child": {
+        "type": "leaf",
+        "trajectory_type": "linear",
+        "trajectory_args": {
+            "start": [0.0, 0.0, 0.0],
+            "end": [0.0, 0.0, -1.0]
+        }
+    },
+    "rot_degree_trajectory_child":{
+        "type": "leaf",
+        "trajectory_type": "manual",
+        "trajectory_args": {
+            "amplitude": [0.0, 0.0, 0.0]
+        }
+    }
+}

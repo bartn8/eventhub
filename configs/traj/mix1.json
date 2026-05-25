@@ -1,0 +1,61 @@
+[
+    {
+        "linear": {
+            "max_radius": 0.0,
+            "init":  [0.0, 0.0, 0.25],
+            "offset":   [0.0, -0.125, -0.25],
+            "phase": 0.0,
+            "relative_offset": true,
+            "z_project": false,
+            "lookat": {
+                "type": "default",
+                "args": {}
+            }
+        }
+    },    
+    {
+        "linear": {
+            "max_radius": 0.0,
+            "init":  [0.0, 0.0, 0.0],
+            "offset":   [0.0, 0.125, 0.125],
+            "phase": 0.0,
+            "relative_offset": true,
+            "z_project": false,
+            "lookat": {
+                "type": "default",
+                "args": {}
+            }
+        }
+    },    
+    {
+        "repeated_random_linear": {
+            "n_iters": 4,
+            "max_radius": 0.5,
+            "init":  [0.0, 0.0, 0.0],
+            "offset":   [0.0, 0.0, -0.125],
+            "relative_offset": true,
+            "z_project": false,
+            "lookat": {
+                "type": "default",
+                "args": {}
+            }            
+        }
+    },
+    {
+        "spiral": {
+            "n_turns": 4,
+            "r_init": 0.0,
+            "init":  [0.0, 0.0, 0.0],
+            "offset":   [0.0, 0.0, 0.125],
+            "x_phase": 0.0,
+            "y_phase": 90.0,
+            "expansion_rate": 0.01,
+            "relative_offset": true,
+            "z_project": false,
+            "lookat": {
+                "type": "default",
+                "args": {}
+            }
+        }
+    }
+]

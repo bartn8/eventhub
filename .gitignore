@@ -1,0 +1,5 @@
+tmp/
+snapshots/
+__pycache__/
+.vscode/
+*.pyc
