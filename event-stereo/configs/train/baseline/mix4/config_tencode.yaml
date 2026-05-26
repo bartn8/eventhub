@@ -1,0 +1,164 @@
+TOTAL_EPOCH: 10
+LOG_INTERVAL: 1000
+METHOD: base
+DATASET:
+  TRAIN:
+    - NAME: dsec
+      PATH: event-stereo/datasets/dsec
+      PARAMS:
+        split: proxy
+        sampling_ratio: 1
+        crop_height: 432
+        crop_width: 576
+        event_cfg:
+          NAME: sbn
+          PARAMS:
+            num_of_event: 500000
+            stack_method: TencodeEventStacking
+            stack_size: 3
+            normalize: True
+            # gamma: 1.0
+            dropout_params:
+              dropout_p: 0.5
+              max_drop_count: 250000
+              max_slice_size: 250000
+              patch_size: 0            
+        disparity_cfg:
+          NAME: proxysupervised
+          PARAMS: { }
+    - NAME: nsd
+      PATH: event-stereo/datasets/ev-nerfstereo-dataset-GEN3X2
+      PARAMS:
+        split: train
+        sampling_ratio: 1
+        width: 640
+        height: 480
+        crop_height: 432
+        crop_width: 576
+        event_cfg:
+          NAME: sbn
+          PARAMS:
+            num_of_event: 200000
+            stack_method: TencodeEventStacking
+            stack_size: 3
+            normalize: True
+            #gamma: 0.5
+            dropout_params:
+              dropout_p: 0.5
+              max_drop_count: 100000
+              max_slice_size: 100000
+              patch_size: 0
+        disparity_cfg:
+          NAME: base
+          PARAMS: {
+            curation_epe_threshold: 3.0,
+           }
+    - NAME: scannet
+      PATH: event-stereo/datasets/ev-nerfstereo-scannet++-GEN3X
+      PARAMS:
+        split: train
+        sampling_ratio: 1
+        width: 640
+        height: 480
+        crop_height: 432
+        crop_width: 576
+        event_cfg:
+          NAME: sbn
+          PARAMS:
+            num_of_event: 200000
+            stack_method: TencodeEventStacking
+            stack_size: 3
+            normalize: True
+            #gamma: 0.5
+            dropout_params:
+              dropout_p: 0.5
+              max_drop_count: 100000
+              max_slice_size: 100000
+              patch_size: 0
+        disparity_cfg:
+          NAME: base
+          PARAMS: { 
+            use_mesh_depth: False,
+            load_images: True,
+            curation_epe_threshold: 4.0,
+          }          
+    - NAME: scannet
+      PATH: event-stereo/datasets/ev-nerfstereo-scannet++-GEN4X
+      PARAMS:
+        split: train
+        sampling_ratio: 1
+        width: 1280
+        height: 720
+        crop_height: 432
+        crop_width: 576
+        event_cfg:
+          NAME: sbn
+          PARAMS:
+            num_of_event: 200000
+            stack_method: TencodeEventStacking
+            stack_size: 3
+            normalize: True
+            #gamma: 0.5
+            dropout_params:
+              dropout_p: 0.5
+              max_drop_count: 100000
+              max_slice_size: 100000
+              patch_size: 0
+        disparity_cfg:
+          NAME: base
+          PARAMS: {
+            use_mesh_depth: False,
+            load_images: True,
+            curation_epe_threshold: 6.0,
+           }
+  TEST:
+    NAME: dsec
+    PARAMS:
+      split: validation
+      sampling_ratio: 1
+      crop_height: 480
+      crop_width: 640
+      event_cfg:
+        NAME: sbn
+        PARAMS:
+          num_of_event: 500000
+          stack_method: TencodeEventStacking
+          stack_size: 3
+          normalize: True
+          #gamma: 0.5
+      disparity_cfg:
+        NAME: base
+        PARAMS: { }
+DATALOADER:
+  TRAIN:
+    NAME: get_simple_dataloader
+    PARAMS:
+      batch_size: 2
+      shuffle: True
+      drop_last: True
+  TEST:
+    NAME: get_sequence_dataloader
+    PARAMS:
+      batch_size: 1
+      shuffle: False
+      drop_last: False
+MODEL:
+  NAME: EventStereoMatchingNetwork
+  PARAMS:
+    backbone: StereoMatchingNetwork
+    disparity_estimator:
+      PARAMS:
+        in_channels: 3
+        max_disp: 192
+        refine_channels: 3
+OPTIMIZER:
+  NAME: AdamW
+  PARAMS:
+    lr: 0.00005
+    weight_decay: 0.0001
+  clip_grad_norm: True
+SCHEDULER:
+  NAME: OneCycleLR
+  PARAMS:
+    anneal_strategy: linear
+    pct_start: 0.01

@@ -1,0 +1,95 @@
+TOTAL_EPOCH: 2
+LOG_INTERVAL: 1000
+METHOD: base
+DATASET:
+  TRAIN:
+    NAME: nsd
+    PATH: event-stereo/datasets/ev-nerfstereo-dataset-GEN3X2
+    PARAMS:
+      split: train
+      sampling_ratio: 1
+      crop_height: 448
+      crop_width: 576
+      event_cfg:
+        NAME: sbn
+        PARAMS:
+          num_of_event: 500000
+          stack_method: TencodeEventStacking
+          stack_size: 3
+          normalize: True
+      disparity_cfg:
+        NAME: base
+        PARAMS: { 
+
+         }
+  TEST:
+    NAME: dsec
+    PARAMS:
+      split: validation
+      sampling_ratio: 1
+      crop_height: 480
+      crop_width: 640
+      event_cfg:
+        NAME: sbn
+        PARAMS:
+          num_of_event: 500000
+          stack_method: TencodeEventStacking
+          stack_size: 3
+          normalize: True
+      disparity_cfg:
+        NAME: base
+        PARAMS: { }
+DATALOADER:
+  TRAIN:
+    NAME: get_simple_dataloader
+    PARAMS:
+      batch_size: 2
+      shuffle: True
+      drop_last: True
+  TEST:
+    NAME: get_sequence_dataloader
+    PARAMS:
+      batch_size: 1
+      shuffle: False
+      drop_last: False
+MODEL:
+  NAME: EventStereoMatchingNetwork
+  PARAMS:
+    backbone: FoundationStereo
+    skip_concentration_net: True
+    concentration_net:
+      PARAMS:
+        in_channels: 3
+        attention_method: soft
+        base_channels: 32
+    disparity_estimator:
+      PARAMS:
+        args:
+          in_channels: 3
+          vit_size: "vits"
+          hidden_dims: [128, 128, 128]
+          low_memory: False
+          max_disp: 192
+          corr_implementation: reg       
+          n_downsample: 2
+          corr_radius: 4
+          corr_levels: 2
+          n_gru_layers: 3
+          slow_fast_gru: False
+          tags_more: []
+          tile_min_overlap: [16, 16]
+          tile_wtype: gaussian
+          wdecay: 0
+          mixed_precision: False
+          use_lora: False
+          lora_r: 4
+OPTIMIZER:
+  NAME: AdamW
+  PARAMS:
+    lr: 0.00005
+    weight_decay: 0.0001
+SCHEDULER:
+  NAME: OneCycleLR
+  PARAMS:
+    anneal_strategy: linear
+    pct_start: 0.01

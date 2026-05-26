@@ -1,0 +1,27 @@
+METHOD: base
+DATASET:
+  TEST:
+    NAME: mvsec
+    PARAMS:
+      split: validation
+      sampling_ratio: 1
+      crop_height: 288
+      crop_width: 352
+      event_cfg:
+        NAME: sbn
+        PARAMS:
+          num_of_event: 50000          
+          stack_method: TencodeEventStacking
+          stack_size: 3
+          normalize: True
+      disparity_cfg:
+        NAME: base
+        PARAMS: { }
+DATALOADER:
+  TEST:
+    NAME: get_sequence_dataloader
+    PARAMS:
+      batch_size: 1
+      shuffle: False
+      drop_last: False
+

@@ -1,0 +1,99 @@
+TOTAL_EPOCH: 10
+LOG_INTERVAL: 1000
+METHOD: base
+DATASET:
+  TRAIN:
+    - NAME: nsd
+      PATH: event-stereo/datasets/ev-nerfstereo-dataset-GEN3X2
+      PARAMS:
+        split: train
+        sampling_ratio: 3
+        width: 640
+        height: 480
+        crop_height: 448
+        crop_width: 576
+        event_cfg:
+          NAME: sbn
+          PARAMS:
+            num_of_event: 500000
+            stack_method: TencodeEventStacking
+            stack_size: 3
+            normalize: True
+            #gamma: 0.5
+            dropout_params:
+              dropout_p: 0.5
+              max_drop_count: 300000
+              max_slice_size: 300000
+              patch_size: 0
+        disparity_cfg:
+          NAME: base
+          PARAMS: {
+            curation_epe_threshold: 3.0,
+           }
+  TEST:
+    NAME: dsec
+    PARAMS:
+      split: validation
+      sampling_ratio: 1
+      crop_height: 480
+      crop_width: 640
+      event_cfg:
+        NAME: sbn
+        PARAMS:
+          num_of_event: 500000
+          stack_method: TencodeEventStacking
+          stack_size: 3
+          normalize: True
+      disparity_cfg:
+        NAME: base
+        PARAMS: { }
+DATALOADER:
+  TRAIN:
+    NAME: get_simple_dataloader
+    PARAMS:
+      batch_size: 2
+      shuffle: True
+      drop_last: True
+  TEST:
+    NAME: get_sequence_dataloader
+    PARAMS:
+      batch_size: 1
+      shuffle: False
+      drop_last: False
+MODEL:
+  NAME: EventStereoMatchingNetwork
+  PARAMS:
+    backbone: StereoAnywhere
+
+    disparity_estimator:
+      PARAMS:
+        args:
+          in_channels: 3
+          corr_implementation: reg       
+          num_downsample: 2
+          corr_radius: 4
+          corr_levels: 4
+          n_gru_layers: 3
+          n_additional_hourglass: 0
+          volume_channels: 8
+          vol_n_masks: 8
+          vol_aug_n_masks: 8
+          use_truncate_vol: False
+          volume_corruption_prob: 0.0
+          use_aggregate_mono_vol: True
+          things_to_freeze: []
+          mono_max_width: 518
+          mono_max_height: 518
+          mono_vit_encoder: vits
+          use_lora: False
+          lora_r: 4
+OPTIMIZER:
+  NAME: AdamW
+  PARAMS:
+    lr: 0.00005
+    weight_decay: 0.0001
+SCHEDULER:
+  NAME: OneCycleLR
+  PARAMS:
+    anneal_strategy: linear
+    pct_start: 0.01

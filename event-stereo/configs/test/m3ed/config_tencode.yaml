@@ -1,0 +1,27 @@
+METHOD: base
+DATASET:
+  TEST:
+    NAME: m3ed
+    PARAMS:
+      split: val_indoor
+      sampling_ratio: 1
+      crop_height: 736
+      crop_width: 1280
+      event_cfg:
+        NAME: sbn
+        PARAMS:
+          num_of_event: 500000
+          stack_method: TencodeEventStacking
+          stack_size: 3
+          normalize: True
+      disparity_cfg:
+        NAME: base
+        PARAMS: { }
+DATALOADER:
+  TEST:
+    NAME: get_sequence_dataloader
+    PARAMS:
+      batch_size: 1
+      shuffle: False
+      drop_last: False
+
