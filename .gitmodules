@@ -1,3 +1,6 @@
 [submodule "svraster"]
 	path = svraster
 	url = https://github.com/NVlabs/svraster.git
+[submodule "FoundationStereo"]
+	path = FoundationStereo
+	url = https://github.com/NVlabs/FoundationStereo.git
