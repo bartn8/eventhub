@@ -1,0 +1,3057 @@
+diff --git a/core/__init__.py b/core/__init__.py
+new file mode 100644
+index 0000000..960af01
+--- /dev/null
++++ b/core/__init__.py
+@@ -0,0 +1 @@
++from .foundation_stereo import FoundationStereo
+\ No newline at end of file
+diff --git a/core/depth_anything/LICENSE.txt b/core/depth_anything/LICENSE.txt
+new file mode 100644
+index 0000000..261eeb9
+--- /dev/null
++++ b/core/depth_anything/LICENSE.txt
+@@ -0,0 +1,201 @@
++                                 Apache License
++                           Version 2.0, January 2004
++                        http://www.apache.org/licenses/
++
++   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
++
++   1. Definitions.
++
++      "License" shall mean the terms and conditions for use, reproduction,
++      and distribution as defined by Sections 1 through 9 of this document.
++
++      "Licensor" shall mean the copyright owner or entity authorized by
++      the copyright owner that is granting the License.
++
++      "Legal Entity" shall mean the union of the acting entity and all
++      other entities that control, are controlled by, or are under common
++      control with that entity. For the purposes of this definition,
++      "control" means (i) the power, direct or indirect, to cause the
++      direction or management of such entity, whether by contract or
++      otherwise, or (ii) ownership of fifty percent (50%) or more of the
++      outstanding shares, or (iii) beneficial ownership of such entity.
++
++      "You" (or "Your") shall mean an individual or Legal Entity
++      exercising permissions granted by this License.
++
++      "Source" form shall mean the preferred form for making modifications,
++      including but not limited to software source code, documentation
++      source, and configuration files.
++
++      "Object" form shall mean any form resulting from mechanical
++      transformation or translation of a Source form, including but
++      not limited to compiled object code, generated documentation,
++      and conversions to other media types.
++
++      "Work" shall mean the work of authorship, whether in Source or
++      Object form, made available under the License, as indicated by a
++      copyright notice that is included in or attached to the work
++      (an example is provided in the Appendix below).
++
++      "Derivative Works" shall mean any work, whether in Source or Object
++      form, that is based on (or derived from) the Work and for which the
++      editorial revisions, annotations, elaborations, or other modifications
++      represent, as a whole, an original work of authorship. For the purposes
++      of this License, Derivative Works shall not include works that remain
++      separable from, or merely link (or bind by name) to the interfaces of,
++      the Work and Derivative Works thereof.
++
++      "Contribution" shall mean any work of authorship, including
++      the original version of the Work and any modifications or additions
++      to that Work or Derivative Works thereof, that is intentionally
++      submitted to Licensor for inclusion in the Work by the copyright owner
++      or by an individual or Legal Entity authorized to submit on behalf of
++      the copyright owner. For the purposes of this definition, "submitted"
++      means any form of electronic, verbal, or written communication sent
++      to the Licensor or its representatives, including but not limited to
++      communication on electronic mailing lists, source code control systems,
++      and issue tracking systems that are managed by, or on behalf of, the
++      Licensor for the purpose of discussing and improving the Work, but
++      excluding communication that is conspicuously marked or otherwise
++      designated in writing by the copyright owner as "Not a Contribution."
++
++      "Contributor" shall mean Licensor and any individual or Legal Entity
++      on behalf of whom a Contribution has been received by Licensor and
++      subsequently incorporated within the Work.
++
++   2. Grant of Copyright License. Subject to the terms and conditions of
++      this License, each Contributor hereby grants to You a perpetual,
++      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
++      copyright license to reproduce, prepare Derivative Works of,
++      publicly display, publicly perform, sublicense, and distribute the
++      Work and such Derivative Works in Source or Object form.
++
++   3. Grant of Patent License. Subject to the terms and conditions of
++      this License, each Contributor hereby grants to You a perpetual,
++      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
++      (except as stated in this section) patent license to make, have made,
++      use, offer to sell, sell, import, and otherwise transfer the Work,
++      where such license applies only to those patent claims licensable
++      by such Contributor that are necessarily infringed by their
++      Contribution(s) alone or by combination of their Contribution(s)
++      with the Work to which such Contribution(s) was submitted. If You
++      institute patent litigation against any entity (including a
++      cross-claim or counterclaim in a lawsuit) alleging that the Work
++      or a Contribution incorporated within the Work constitutes direct
++      or contributory patent infringement, then any patent licenses
++      granted to You under this License for that Work shall terminate
++      as of the date such litigation is filed.
++
++   4. Redistribution. You may reproduce and distribute copies of the
++      Work or Derivative Works thereof in any medium, with or without
++      modifications, and in Source or Object form, provided that You
++      meet the following conditions:
++
++      (a) You must give any other recipients of the Work or
++          Derivative Works a copy of this License; and
++
++      (b) You must cause any modified files to carry prominent notices
++          stating that You changed the files; and
++
++      (c) You must retain, in the Source form of any Derivative Works
++          that You distribute, all copyright, patent, trademark, and
++          attribution notices from the Source form of the Work,
++          excluding those notices that do not pertain to any part of
++          the Derivative Works; and
++
++      (d) If the Work includes a "NOTICE" text file as part of its
++          distribution, then any Derivative Works that You distribute must
++          include a readable copy of the attribution notices contained
++          within such NOTICE file, excluding those notices that do not
++          pertain to any part of the Derivative Works, in at least one
++          of the following places: within a NOTICE text file distributed
++          as part of the Derivative Works; within the Source form or
++          documentation, if provided along with the Derivative Works; or,
++          within a display generated by the Derivative Works, if and
++          wherever such third-party notices normally appear. The contents
++          of the NOTICE file are for informational purposes only and
++          do not modify the License. You may add Your own attribution
++          notices within Derivative Works that You distribute, alongside
++          or as an addendum to the NOTICE text from the Work, provided
++          that such additional attribution notices cannot be construed
++          as modifying the License.
++
++      You may add Your own copyright statement to Your modifications and
++      may provide additional or different license terms and conditions
++      for use, reproduction, or distribution of Your modifications, or
++      for any such Derivative Works as a whole, provided Your use,
++      reproduction, and distribution of the Work otherwise complies with
++      the conditions stated in this License.
++
++   5. Submission of Contributions. Unless You explicitly state otherwise,
++      any Contribution intentionally submitted for inclusion in the Work
++      by You to the Licensor shall be under the terms and conditions of
++      this License, without any additional terms or conditions.
++      Notwithstanding the above, nothing herein shall supersede or modify
++      the terms of any separate license agreement you may have executed
++      with Licensor regarding such Contributions.
++
++   6. Trademarks. This License does not grant permission to use the trade
++      names, trademarks, service marks, or product names of the Licensor,
++      except as required for reasonable and customary use in describing the
++      origin of the Work and reproducing the content of the NOTICE file.
++
++   7. Disclaimer of Warranty. Unless required by applicable law or
++      agreed to in writing, Licensor provides the Work (and each
++      Contributor provides its Contributions) on an "AS IS" BASIS,
++      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
++      implied, including, without limitation, any warranties or conditions
++      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
++      PARTICULAR PURPOSE. You are solely responsible for determining the
++      appropriateness of using or redistributing the Work and assume any
++      risks associated with Your exercise of permissions under this License.
++
++   8. Limitation of Liability. In no event and under no legal theory,
++      whether in tort (including negligence), contract, or otherwise,
++      unless required by applicable law (such as deliberate and grossly
++      negligent acts) or agreed to in writing, shall any Contributor be
++      liable to You for damages, including any direct, indirect, special,
++      incidental, or consequential damages of any character arising as a
++      result of this License or out of the use or inability to use the
++      Work (including but not limited to damages for loss of goodwill,
++      work stoppage, computer failure or malfunction, or any and all
++      other commercial damages or losses), even if such Contributor
++      has been advised of the possibility of such damages.
++
++   9. Accepting Warranty or Additional Liability. While redistributing
++      the Work or Derivative Works thereof, You may choose to offer,
++      and charge a fee for, acceptance of support, warranty, indemnity,
++      or other liability obligations and/or rights consistent with this
++      License. However, in accepting such obligations, You may act only
++      on Your own behalf and on Your sole responsibility, not on behalf
++      of any other Contributor, and only if You agree to indemnify,
++      defend, and hold each Contributor harmless for any liability
++      incurred by, or claims asserted against, such Contributor by reason
++      of your accepting any such warranty or additional liability.
++
++   END OF TERMS AND CONDITIONS
++
++   APPENDIX: How to apply the Apache License to your work.
++
++      To apply the Apache License to your work, attach the following
++      boilerplate notice, with the fields enclosed by brackets "[]"
++      replaced with your own identifying information. (Don't include
++      the brackets!)  The text should be enclosed in the appropriate
++      comment syntax for the file format. We also recommend that a
++      file or class name and description of purpose be included on the
++      same "printed page" as the copyright notice for easier
++      identification within third-party archives.
++
++   Copyright [yyyy] [name of copyright owner]
++
++   Licensed under the Apache License, Version 2.0 (the "License");
++   you may not use this file except in compliance with the License.
++   You may obtain a copy of the License at
++
++       http://www.apache.org/licenses/LICENSE-2.0
++
++   Unless required by applicable law or agreed to in writing, software
++   distributed under the License is distributed on an "AS IS" BASIS,
++   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++   See the License for the specific language governing permissions and
++   limitations under the License.
+diff --git a/core/depth_anything/dinov2.py b/core/depth_anything/dinov2.py
+new file mode 100644
+index 0000000..f773217
+--- /dev/null
++++ b/core/depth_anything/dinov2.py
+@@ -0,0 +1,425 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++#
++# This source code is licensed under the Apache License, Version 2.0
++# found in the LICENSE file in the root directory of this source tree.
++
++# References:
++#   https://github.com/facebookresearch/dino/blob/main/vision_transformer.py
++#   https://github.com/rwightman/pytorch-image-models/tree/master/timm/models/vision_transformer.py
++
++from functools import partial
++import math
++import logging
++from typing import Sequence, Tuple, Union, Callable
++
++import torch
++import torch.nn as nn
++from torch.nn.init import trunc_normal_
++
++try:
++    from .dinov2_layers import Mlp, PatchEmbed, SwiGLUFFNFused, MemEffAttention, NestedTensorBlock as Block
++except ImportError:
++    # Fallback per quando viene eseguito direttamente
++    from dinov2_layers import Mlp, PatchEmbed, SwiGLUFFNFused, MemEffAttention, NestedTensorBlock as Block
++
++
++logger = logging.getLogger("dinov2")
++
++
++def named_apply(fn: Callable, module: nn.Module, name="", depth_first=True, include_root=False) -> nn.Module:
++    if not depth_first and include_root:
++        fn(module=module, name=name)
++    for child_name, child_module in module.named_children():
++        child_name = ".".join((name, child_name)) if name else child_name
++        named_apply(fn=fn, module=child_module, name=child_name, depth_first=depth_first, include_root=True)
++    if depth_first and include_root:
++        fn(module=module, name=name)
++    return module
++
++
++class BlockChunk(nn.ModuleList):
++    def forward(self, x):
++        for b in self:
++            x = b(x)
++        return x
++
++
++class DinoVisionTransformer(nn.Module):
++    def __init__(
++        self,
++        img_size=224,
++        patch_size=16,
++        in_chans=3,
++        embed_dim=768,
++        depth=12,
++        num_heads=12,
++        mlp_ratio=4.0,
++        qkv_bias=True,
++        ffn_bias=True,
++        proj_bias=True,
++        drop_path_rate=0.0,
++        drop_path_uniform=False,
++        init_values=None,  # for layerscale: None or 0 => no layerscale
++        embed_layer=PatchEmbed,
++        act_layer=nn.GELU,
++        block_fn=Block,
++        ffn_layer="mlp",
++        block_chunks=1,
++        num_register_tokens=0,
++        interpolate_antialias=False,
++        interpolate_offset=0.1,
++    ):
++        """
++        Args:
++            img_size (int, tuple): input image size
++            patch_size (int, tuple): patch size
++            in_chans (int): number of input channels
++            embed_dim (int): embedding dimension
++            depth (int): depth of transformer
++            num_heads (int): number of attention heads
++            mlp_ratio (int): ratio of mlp hidden dim to embedding dim
++            qkv_bias (bool): enable bias for qkv if True
++            proj_bias (bool): enable bias for proj in attn if True
++            ffn_bias (bool): enable bias for ffn if True
++            drop_path_rate (float): stochastic depth rate
++            drop_path_uniform (bool): apply uniform drop rate across blocks
++            weight_init (str): weight init scheme
++            init_values (float): layer-scale init values
++            embed_layer (nn.Module): patch embedding layer
++            act_layer (nn.Module): MLP activation layer
++            block_fn (nn.Module): transformer block class
++            ffn_layer (str): "mlp", "swiglu", "swiglufused" or "identity"
++            block_chunks: (int) split block sequence into block_chunks units for FSDP wrap
++            num_register_tokens: (int) number of extra cls tokens (so-called "registers")
++            interpolate_antialias: (str) flag to apply anti-aliasing when interpolating positional embeddings
++            interpolate_offset: (float) work-around offset to apply when interpolating positional embeddings
++        """
++        super().__init__()
++        norm_layer = partial(nn.LayerNorm, eps=1e-6)
++
++        self.num_features = self.embed_dim = embed_dim  # num_features for consistency with other models
++        self.num_tokens = 1
++        self.n_blocks = depth
++        self.num_heads = num_heads
++        self.patch_size = patch_size
++        self.num_register_tokens = num_register_tokens
++        self.interpolate_antialias = interpolate_antialias
++        self.interpolate_offset = interpolate_offset
++
++        self.patch_embed = embed_layer(img_size=img_size, patch_size=patch_size, in_chans=in_chans, embed_dim=embed_dim)
++        num_patches = self.patch_embed.num_patches
++
++        self.cls_token = nn.Parameter(torch.zeros(1, 1, embed_dim))
++        self.pos_embed = nn.Parameter(torch.zeros(1, num_patches + self.num_tokens, embed_dim))
++        assert num_register_tokens >= 0
++        self.register_tokens = (
++            nn.Parameter(torch.zeros(1, num_register_tokens, embed_dim)) if num_register_tokens else None
++        )
++
++        if drop_path_uniform is True:
++            dpr = [drop_path_rate] * depth
++        else:
++            dpr = [x.item() for x in torch.linspace(0, drop_path_rate, depth)]  # stochastic depth decay rule
++
++        if ffn_layer == "mlp":
++            logger.info("using MLP layer as FFN")
++            ffn_layer = Mlp
++        elif ffn_layer == "swiglufused" or ffn_layer == "swiglu":
++            logger.info("using SwiGLU layer as FFN")
++            ffn_layer = SwiGLUFFNFused
++        elif ffn_layer == "identity":
++            logger.info("using Identity layer as FFN")
++
++            def f(*args, **kwargs):
++                return nn.Identity()
++
++            ffn_layer = f
++        else:
++            raise NotImplementedError
++
++        blocks_list = [
++            block_fn(
++                dim=embed_dim,
++                num_heads=num_heads,
++                mlp_ratio=mlp_ratio,
++                qkv_bias=qkv_bias,
++                proj_bias=proj_bias,
++                ffn_bias=ffn_bias,
++                drop_path=dpr[i],
++                norm_layer=norm_layer,
++                act_layer=act_layer,
++                ffn_layer=ffn_layer,
++                init_values=init_values,
++            )
++            for i in range(depth)
++        ]
++        if block_chunks > 0:
++            self.chunked_blocks = True
++            chunked_blocks = []
++            chunksize = depth // block_chunks
++            for i in range(0, depth, chunksize):
++                # this is to keep the block index consistent if we chunk the block list
++                chunked_blocks.append([nn.Identity()] * i + blocks_list[i : i + chunksize])
++            self.blocks = nn.ModuleList([BlockChunk(p) for p in chunked_blocks])
++        else:
++            self.chunked_blocks = False
++            self.blocks = nn.ModuleList(blocks_list)
++
++        self.norm = norm_layer(embed_dim)
++        self.head = nn.Identity()
++
++        self.mask_token = nn.Parameter(torch.zeros(1, embed_dim))
++
++        self.init_weights()
++
++    def init_weights(self):
++        trunc_normal_(self.pos_embed, std=0.02)
++        nn.init.normal_(self.cls_token, std=1e-6)
++        if self.register_tokens is not None:
++            nn.init.normal_(self.register_tokens, std=1e-6)
++        named_apply(init_weights_vit_timm, self)
++
++    def interpolate_pos_encoding(self, x, w, h):
++        previous_dtype = x.dtype
++        npatch = x.shape[1] - 1
++        N = self.pos_embed.shape[1] - 1
++        if npatch == N and w == h:
++            return self.pos_embed
++        pos_embed = self.pos_embed.float()
++        class_pos_embed = pos_embed[:, 0]
++        patch_pos_embed = pos_embed[:, 1:]
++        dim = x.shape[-1]
++        w0 = w // self.patch_size
++        h0 = h // self.patch_size
++        # we add a small number to avoid floating point error in the interpolation
++        # see discussion at https://github.com/facebookresearch/dino/issues/8
++        # DINOv2 with register modify the interpolate_offset from 0.1 to 0.0
++        w0, h0 = w0 + self.interpolate_offset, h0 + self.interpolate_offset
++        # w0, h0 = w0 + 0.1, h0 + 0.1
++        
++        sqrt_N = math.sqrt(N)
++        sx, sy = float(w0) / sqrt_N, float(h0) / sqrt_N
++        patch_pos_embed = nn.functional.interpolate(
++            patch_pos_embed.reshape(1, int(sqrt_N), int(sqrt_N), dim).permute(0, 3, 1, 2),
++            scale_factor=(sx, sy),
++            # (int(w0), int(h0)), # to solve the upsampling shape issue
++            mode="bicubic",
++            antialias=self.interpolate_antialias
++        )
++        
++        assert int(w0) == patch_pos_embed.shape[-2]
++        assert int(h0) == patch_pos_embed.shape[-1]
++        patch_pos_embed = patch_pos_embed.permute(0, 2, 3, 1).view(1, -1, dim)
++        return torch.cat((class_pos_embed.unsqueeze(0), patch_pos_embed), dim=1).to(previous_dtype)
++
++    def prepare_tokens_with_masks(self, x, masks=None):
++        B, nc, w, h = x.shape
++        x = self.patch_embed(x)
++        if masks is not None:
++            x = torch.where(masks.unsqueeze(-1), self.mask_token.to(x.dtype).unsqueeze(0), x)
++
++        x = torch.cat((self.cls_token.expand(x.shape[0], -1, -1), x), dim=1)
++        x = x + self.interpolate_pos_encoding(x, w, h)
++
++        if self.register_tokens is not None:
++            x = torch.cat(
++                (
++                    x[:, :1],
++                    self.register_tokens.expand(x.shape[0], -1, -1),
++                    x[:, 1:],
++                ),
++                dim=1,
++            )
++
++        return x
++
++    def forward_features_list(self, x_list, masks_list):
++        x = [self.prepare_tokens_with_masks(x, masks) for x, masks in zip(x_list, masks_list)]
++        for blk in self.blocks:
++            x = blk(x)
++
++        all_x = x
++        output = []
++        for x, masks in zip(all_x, masks_list):
++            x_norm = self.norm(x)
++            output.append(
++                {
++                    "x_norm_clstoken": x_norm[:, 0],
++                    "x_norm_regtokens": x_norm[:, 1 : self.num_register_tokens + 1],
++                    "x_norm_patchtokens": x_norm[:, self.num_register_tokens + 1 :],
++                    "x_prenorm": x,
++                    "masks": masks,
++                }
++            )
++        return output
++
++    def forward_features(self, x, masks=None):
++        if isinstance(x, list):
++            return self.forward_features_list(x, masks)
++
++        x = self.prepare_tokens_with_masks(x, masks)
++
++        for blk in self.blocks:
++            x = blk(x)
++
++        x_norm = self.norm(x)
++        return {
++            "x_norm_clstoken": x_norm[:, 0],
++            "x_norm_regtokens": x_norm[:, 1 : self.num_register_tokens + 1],
++            "x_norm_patchtokens": x_norm[:, self.num_register_tokens + 1 :],
++            "x_prenorm": x,
++            "masks": masks,
++        }
++
++    def _get_intermediate_layers_not_chunked(self, x, n=1):
++        x = self.prepare_tokens_with_masks(x)
++        # If n is an int, take the n last blocks. If it's a list, take them
++        output, total_block_len = [], len(self.blocks)
++        blocks_to_take = range(total_block_len - n, total_block_len) if isinstance(n, int) else n
++        for i, blk in enumerate(self.blocks):
++            x = blk(x)
++            if i in blocks_to_take:
++                output.append(x)
++        assert len(output) == len(blocks_to_take), f"only {len(output)} / {len(blocks_to_take)} blocks found"
++        return output
++
++    def _get_intermediate_layers_chunked(self, x, n=1):
++        x = self.prepare_tokens_with_masks(x)
++        output, i, total_block_len = [], 0, len(self.blocks[-1])
++        # If n is an int, take the n last blocks. If it's a list, take them
++        blocks_to_take = range(total_block_len - n, total_block_len) if isinstance(n, int) else n
++        for block_chunk in self.blocks:
++            for blk in block_chunk[i:]:  # Passing the nn.Identity()
++                x = blk(x)
++                if i in blocks_to_take:
++                    output.append(x)
++                i += 1
++        assert len(output) == len(blocks_to_take), f"only {len(output)} / {len(blocks_to_take)} blocks found"
++        return output
++
++    def get_intermediate_layers(
++        self,
++        x: torch.Tensor,
++        n: Union[int, Sequence] = 1,  # Layers or n last layers to take
++        reshape: bool = False,
++        return_class_token: bool = False,
++        norm=True
++    ) -> Tuple[Union[torch.Tensor, Tuple[torch.Tensor]]]:
++        
++        if self.chunked_blocks:
++            outputs = self._get_intermediate_layers_chunked(x, n)
++        else:
++            outputs = self._get_intermediate_layers_not_chunked(x, n)
++
++        if norm:
++            outputs = [self.norm(out) for out in outputs]
++
++        class_tokens = [out[:, 0] for out in outputs]
++
++        outputs = [out[:, 1 + self.num_register_tokens:] for out in outputs]
++
++        if reshape:
++            B, _, w, h = x.shape
++            outputs = [
++                out.reshape(B, w // self.patch_size, h // self.patch_size, -1).permute(0, 3, 1, 2).contiguous()
++                for out in outputs
++            ]
++
++        if return_class_token:
++            return tuple(zip(outputs, class_tokens))
++        
++        return tuple(outputs)
++
++    def forward(self, *args, is_training=False, **kwargs):
++        ret = self.forward_features(*args, **kwargs)
++        if is_training:
++            return ret
++        else:
++            return self.head(ret["x_norm_clstoken"])
++
++
++def init_weights_vit_timm(module: nn.Module, name: str = ""):
++    """ViT weight initialization, original timm impl (for reproducibility)"""
++    if isinstance(module, nn.Linear):
++        trunc_normal_(module.weight, std=0.02)
++        if module.bias is not None:
++            nn.init.zeros_(module.bias)
++
++
++def vit_small(patch_size=16, num_register_tokens=0, **kwargs):
++    model = DinoVisionTransformer(
++        patch_size=patch_size,
++        embed_dim=384,
++        depth=12,
++        num_heads=6,
++        mlp_ratio=4,
++        block_fn=partial(Block, attn_class=MemEffAttention),
++        num_register_tokens=num_register_tokens,
++        **kwargs,
++    )
++    return model
++
++
++def vit_base(patch_size=16, num_register_tokens=0, **kwargs):
++    model = DinoVisionTransformer(
++        patch_size=patch_size,
++        embed_dim=768,
++        depth=12,
++        num_heads=12,
++        mlp_ratio=4,
++        block_fn=partial(Block, attn_class=MemEffAttention),
++        num_register_tokens=num_register_tokens,
++        **kwargs,
++    )
++    return model
++
++
++def vit_large(patch_size=16, num_register_tokens=0, **kwargs):
++    model = DinoVisionTransformer(
++        patch_size=patch_size,
++        embed_dim=1024,
++        depth=24,
++        num_heads=16,
++        mlp_ratio=4,
++        block_fn=partial(Block, attn_class=MemEffAttention),
++        num_register_tokens=num_register_tokens,
++        **kwargs,
++    )
++    return model
++
++
++def vit_giant2(patch_size=16, num_register_tokens=0, **kwargs):
++    """
++    Close to ViT-giant, with embed-dim 1536 and 24 heads => embed-dim per head 64
++    """
++    model = DinoVisionTransformer(
++        patch_size=patch_size,
++        embed_dim=1536,
++        depth=40,
++        num_heads=24,
++        mlp_ratio=4,
++        block_fn=partial(Block, attn_class=MemEffAttention),
++        num_register_tokens=num_register_tokens,
++        **kwargs,
++    )
++    return model
++
++
++def DINOv2(model_name):
++    model_zoo = {
++        "vits": vit_small, 
++        "vitb": vit_base, 
++        "vitl": vit_large, 
++        "vitg": vit_giant2
++    }
++    
++    return model_zoo[model_name](
++        img_size=518,
++        patch_size=14,
++        init_values=1.0,
++        ffn_layer="mlp" if model_name != "vitg" else "swiglufused",
++        block_chunks=0,
++        num_register_tokens=0,
++        interpolate_antialias=False,
++        interpolate_offset=0.1
++    )
+diff --git a/core/depth_anything/dinov2_layers/__init__.py b/core/depth_anything/dinov2_layers/__init__.py
+new file mode 100644
+index 0000000..8120f4b
+--- /dev/null
++++ b/core/depth_anything/dinov2_layers/__init__.py
+@@ -0,0 +1,11 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++# All rights reserved.
++#
++# This source code is licensed under the license found in the
++# LICENSE file in the root directory of this source tree.
++
++from .mlp import Mlp
++from .patch_embed import PatchEmbed
++from .swiglu_ffn import SwiGLUFFN, SwiGLUFFNFused
++from .block import NestedTensorBlock
++from .attention import MemEffAttention
+diff --git a/core/depth_anything/dinov2_layers/attention.py b/core/depth_anything/dinov2_layers/attention.py
+new file mode 100644
+index 0000000..815a2bf
+--- /dev/null
++++ b/core/depth_anything/dinov2_layers/attention.py
+@@ -0,0 +1,83 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++# All rights reserved.
++#
++# This source code is licensed under the license found in the
++# LICENSE file in the root directory of this source tree.
++
++# References:
++#   https://github.com/facebookresearch/dino/blob/master/vision_transformer.py
++#   https://github.com/rwightman/pytorch-image-models/tree/master/timm/models/vision_transformer.py
++
++import logging
++
++from torch import Tensor
++from torch import nn
++
++
++logger = logging.getLogger("dinov2")
++
++
++try:
++    from xformers.ops import memory_efficient_attention, unbind, fmha
++
++    XFORMERS_AVAILABLE = True
++except ImportError:
++    logger.warning("xFormers not available")
++    XFORMERS_AVAILABLE = False
++
++
++class Attention(nn.Module):
++    def __init__(
++        self,
++        dim: int,
++        num_heads: int = 8,
++        qkv_bias: bool = False,
++        proj_bias: bool = True,
++        attn_drop: float = 0.0,
++        proj_drop: float = 0.0,
++    ) -> None:
++        super().__init__()
++        self.num_heads = num_heads
++        head_dim = dim // num_heads
++        self.scale = head_dim**-0.5
++
++        self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
++        self.attn_drop = nn.Dropout(attn_drop)
++        self.proj = nn.Linear(dim, dim, bias=proj_bias)
++        self.proj_drop = nn.Dropout(proj_drop)
++
++    def forward(self, x: Tensor) -> Tensor:
++        B, N, C = x.shape
++        qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads).permute(2, 0, 3, 1, 4)
++
++        q, k, v = qkv[0] * self.scale, qkv[1], qkv[2]
++        attn = q @ k.transpose(-2, -1)
++
++        attn = attn.softmax(dim=-1)
++        attn = self.attn_drop(attn)
++
++        x = (attn @ v).transpose(1, 2).reshape(B, N, C)
++        x = self.proj(x)
++        x = self.proj_drop(x)
++        return x
++
++
++class MemEffAttention(Attention):
++    def forward(self, x: Tensor, attn_bias=None) -> Tensor:
++        if not XFORMERS_AVAILABLE:
++            assert attn_bias is None, "xFormers is required for nested tensors usage"
++            return super().forward(x)
++
++        B, N, C = x.shape
++        qkv = self.qkv(x).reshape(B, N, 3, self.num_heads, C // self.num_heads)
++
++        q, k, v = unbind(qkv, 2)
++
++        x = memory_efficient_attention(q, k, v, attn_bias=attn_bias)
++        x = x.reshape([B, N, C])
++
++        x = self.proj(x)
++        x = self.proj_drop(x)
++        return x
++
++        
+\ No newline at end of file
+diff --git a/core/depth_anything/dinov2_layers/block.py b/core/depth_anything/dinov2_layers/block.py
+new file mode 100644
+index 0000000..25488f5
+--- /dev/null
++++ b/core/depth_anything/dinov2_layers/block.py
+@@ -0,0 +1,252 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++# All rights reserved.
++#
++# This source code is licensed under the license found in the
++# LICENSE file in the root directory of this source tree.
++
++# References:
++#   https://github.com/facebookresearch/dino/blob/master/vision_transformer.py
++#   https://github.com/rwightman/pytorch-image-models/tree/master/timm/layers/patch_embed.py
++
++import logging
++from typing import Callable, List, Any, Tuple, Dict
++
++import torch
++from torch import nn, Tensor
++
++from .attention import Attention, MemEffAttention
++from .drop_path import DropPath
++from .layer_scale import LayerScale
++from .mlp import Mlp
++
++
++logger = logging.getLogger("dinov2")
++
++
++try:
++    from xformers.ops import fmha
++    from xformers.ops import scaled_index_add, index_select_cat
++
++    XFORMERS_AVAILABLE = True
++except ImportError:
++    logger.warning("xFormers not available")
++    XFORMERS_AVAILABLE = False
++
++
++class Block(nn.Module):
++    def __init__(
++        self,
++        dim: int,
++        num_heads: int,
++        mlp_ratio: float = 4.0,
++        qkv_bias: bool = False,
++        proj_bias: bool = True,
++        ffn_bias: bool = True,
++        drop: float = 0.0,
++        attn_drop: float = 0.0,
++        init_values=None,
++        drop_path: float = 0.0,
++        act_layer: Callable[..., nn.Module] = nn.GELU,
++        norm_layer: Callable[..., nn.Module] = nn.LayerNorm,
++        attn_class: Callable[..., nn.Module] = Attention,
++        ffn_layer: Callable[..., nn.Module] = Mlp,
++    ) -> None:
++        super().__init__()
++        # print(f"biases: qkv: {qkv_bias}, proj: {proj_bias}, ffn: {ffn_bias}")
++        self.norm1 = norm_layer(dim)
++        self.attn = attn_class(
++            dim,
++            num_heads=num_heads,
++            qkv_bias=qkv_bias,
++            proj_bias=proj_bias,
++            attn_drop=attn_drop,
++            proj_drop=drop,
++        )
++        self.ls1 = LayerScale(dim, init_values=init_values) if init_values else nn.Identity()
++        self.drop_path1 = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
++
++        self.norm2 = norm_layer(dim)
++        mlp_hidden_dim = int(dim * mlp_ratio)
++        self.mlp = ffn_layer(
++            in_features=dim,
++            hidden_features=mlp_hidden_dim,
++            act_layer=act_layer,
++            drop=drop,
++            bias=ffn_bias,
++        )
++        self.ls2 = LayerScale(dim, init_values=init_values) if init_values else nn.Identity()
++        self.drop_path2 = DropPath(drop_path) if drop_path > 0.0 else nn.Identity()
++
++        self.sample_drop_ratio = drop_path
++
++    def forward(self, x: Tensor) -> Tensor:
++        def attn_residual_func(x: Tensor) -> Tensor:
++            return self.ls1(self.attn(self.norm1(x)))
++
++        def ffn_residual_func(x: Tensor) -> Tensor:
++            return self.ls2(self.mlp(self.norm2(x)))
++
++        if self.training and self.sample_drop_ratio > 0.1:
++            # the overhead is compensated only for a drop path rate larger than 0.1
++            x = drop_add_residual_stochastic_depth(
++                x,
++                residual_func=attn_residual_func,
++                sample_drop_ratio=self.sample_drop_ratio,
++            )
++            x = drop_add_residual_stochastic_depth(
++                x,
++                residual_func=ffn_residual_func,
++                sample_drop_ratio=self.sample_drop_ratio,
++            )
++        elif self.training and self.sample_drop_ratio > 0.0:
++            x = x + self.drop_path1(attn_residual_func(x))
++            x = x + self.drop_path1(ffn_residual_func(x))  # FIXME: drop_path2
++        else:
++            x = x + attn_residual_func(x)
++            x = x + ffn_residual_func(x)
++        return x
++
++
++def drop_add_residual_stochastic_depth(
++    x: Tensor,
++    residual_func: Callable[[Tensor], Tensor],
++    sample_drop_ratio: float = 0.0,
++) -> Tensor:
++    # 1) extract subset using permutation
++    b, n, d = x.shape
++    sample_subset_size = max(int(b * (1 - sample_drop_ratio)), 1)
++    brange = (torch.randperm(b, device=x.device))[:sample_subset_size]
++    x_subset = x[brange]
++
++    # 2) apply residual_func to get residual
++    residual = residual_func(x_subset)
++
++    x_flat = x.flatten(1)
++    residual = residual.flatten(1)
++
++    residual_scale_factor = b / sample_subset_size
++
++    # 3) add the residual
++    x_plus_residual = torch.index_add(x_flat, 0, brange, residual.to(dtype=x.dtype), alpha=residual_scale_factor)
++    return x_plus_residual.view_as(x)
++
++
++def get_branges_scales(x, sample_drop_ratio=0.0):
++    b, n, d = x.shape
++    sample_subset_size = max(int(b * (1 - sample_drop_ratio)), 1)
++    brange = (torch.randperm(b, device=x.device))[:sample_subset_size]
++    residual_scale_factor = b / sample_subset_size
++    return brange, residual_scale_factor
++
++
++def add_residual(x, brange, residual, residual_scale_factor, scaling_vector=None):
++    if scaling_vector is None:
++        x_flat = x.flatten(1)
++        residual = residual.flatten(1)
++        x_plus_residual = torch.index_add(x_flat, 0, brange, residual.to(dtype=x.dtype), alpha=residual_scale_factor)
++    else:
++        x_plus_residual = scaled_index_add(
++            x, brange, residual.to(dtype=x.dtype), scaling=scaling_vector, alpha=residual_scale_factor
++        )
++    return x_plus_residual
++
++
++attn_bias_cache: Dict[Tuple, Any] = {}
++
++
++def get_attn_bias_and_cat(x_list, branges=None):
++    """
++    this will perform the index select, cat the tensors, and provide the attn_bias from cache
++    """
++    batch_sizes = [b.shape[0] for b in branges] if branges is not None else [x.shape[0] for x in x_list]
++    all_shapes = tuple((b, x.shape[1]) for b, x in zip(batch_sizes, x_list))
++    if all_shapes not in attn_bias_cache.keys():
++        seqlens = []
++        for b, x in zip(batch_sizes, x_list):
++            for _ in range(b):
++                seqlens.append(x.shape[1])
++        attn_bias = fmha.BlockDiagonalMask.from_seqlens(seqlens)
++        attn_bias._batch_sizes = batch_sizes
++        attn_bias_cache[all_shapes] = attn_bias
++
++    if branges is not None:
++        cat_tensors = index_select_cat([x.flatten(1) for x in x_list], branges).view(1, -1, x_list[0].shape[-1])
++    else:
++        tensors_bs1 = tuple(x.reshape([1, -1, *x.shape[2:]]) for x in x_list)
++        cat_tensors = torch.cat(tensors_bs1, dim=1)
++
++    return attn_bias_cache[all_shapes], cat_tensors
++
++
++def drop_add_residual_stochastic_depth_list(
++    x_list: List[Tensor],
++    residual_func: Callable[[Tensor, Any], Tensor],
++    sample_drop_ratio: float = 0.0,
++    scaling_vector=None,
++) -> Tensor:
++    # 1) generate random set of indices for dropping samples in the batch
++    branges_scales = [get_branges_scales(x, sample_drop_ratio=sample_drop_ratio) for x in x_list]
++    branges = [s[0] for s in branges_scales]
++    residual_scale_factors = [s[1] for s in branges_scales]
++
++    # 2) get attention bias and index+concat the tensors
++    attn_bias, x_cat = get_attn_bias_and_cat(x_list, branges)
++
++    # 3) apply residual_func to get residual, and split the result
++    residual_list = attn_bias.split(residual_func(x_cat, attn_bias=attn_bias))  # type: ignore
++
++    outputs = []
++    for x, brange, residual, residual_scale_factor in zip(x_list, branges, residual_list, residual_scale_factors):
++        outputs.append(add_residual(x, brange, residual, residual_scale_factor, scaling_vector).view_as(x))
++    return outputs
++
++
++class NestedTensorBlock(Block):
++    def forward_nested(self, x_list: List[Tensor]) -> List[Tensor]:
++        """
++        x_list contains a list of tensors to nest together and run
++        """
++        assert isinstance(self.attn, MemEffAttention)
++
++        if self.training and self.sample_drop_ratio > 0.0:
++
++            def attn_residual_func(x: Tensor, attn_bias=None) -> Tensor:
++                return self.attn(self.norm1(x), attn_bias=attn_bias)
++
++            def ffn_residual_func(x: Tensor, attn_bias=None) -> Tensor:
++                return self.mlp(self.norm2(x))
++
++            x_list = drop_add_residual_stochastic_depth_list(
++                x_list,
++                residual_func=attn_residual_func,
++                sample_drop_ratio=self.sample_drop_ratio,
++                scaling_vector=self.ls1.gamma if isinstance(self.ls1, LayerScale) else None,
++            )
++            x_list = drop_add_residual_stochastic_depth_list(
++                x_list,
++                residual_func=ffn_residual_func,
++                sample_drop_ratio=self.sample_drop_ratio,
++                scaling_vector=self.ls2.gamma if isinstance(self.ls1, LayerScale) else None,
++            )
++            return x_list
++        else:
++
++            def attn_residual_func(x: Tensor, attn_bias=None) -> Tensor:
++                return self.ls1(self.attn(self.norm1(x), attn_bias=attn_bias))
++
++            def ffn_residual_func(x: Tensor, attn_bias=None) -> Tensor:
++                return self.ls2(self.mlp(self.norm2(x)))
++
++            attn_bias, x = get_attn_bias_and_cat(x_list)
++            x = x + attn_residual_func(x, attn_bias=attn_bias)
++            x = x + ffn_residual_func(x)
++            return attn_bias.split(x)
++
++    def forward(self, x_or_x_list):
++        if isinstance(x_or_x_list, Tensor):
++            return super().forward(x_or_x_list)
++        elif isinstance(x_or_x_list, list):
++            assert XFORMERS_AVAILABLE, "Please install xFormers for nested tensors usage"
++            return self.forward_nested(x_or_x_list)
++        else:
++            raise AssertionError
+diff --git a/core/depth_anything/dinov2_layers/drop_path.py b/core/depth_anything/dinov2_layers/drop_path.py
+new file mode 100644
+index 0000000..af05625
+--- /dev/null
++++ b/core/depth_anything/dinov2_layers/drop_path.py
+@@ -0,0 +1,35 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++# All rights reserved.
++#
++# This source code is licensed under the license found in the
++# LICENSE file in the root directory of this source tree.
++
++# References:
++#   https://github.com/facebookresearch/dino/blob/master/vision_transformer.py
++#   https://github.com/rwightman/pytorch-image-models/tree/master/timm/layers/drop.py
++
++
++from torch import nn
++
++
++def drop_path(x, drop_prob: float = 0.0, training: bool = False):
++    if drop_prob == 0.0 or not training:
++        return x
++    keep_prob = 1 - drop_prob
++    shape = (x.shape[0],) + (1,) * (x.ndim - 1)  # work with diff dim tensors, not just 2D ConvNets
++    random_tensor = x.new_empty(shape).bernoulli_(keep_prob)
++    if keep_prob > 0.0:
++        random_tensor.div_(keep_prob)
++    output = x * random_tensor
++    return output
++
++
++class DropPath(nn.Module):
++    """Drop paths (Stochastic Depth) per sample (when applied in main path of residual blocks)."""
++
++    def __init__(self, drop_prob=None):
++        super(DropPath, self).__init__()
++        self.drop_prob = drop_prob
++
++    def forward(self, x):
++        return drop_path(x, self.drop_prob, self.training)
+diff --git a/core/depth_anything/dinov2_layers/layer_scale.py b/core/depth_anything/dinov2_layers/layer_scale.py
+new file mode 100644
+index 0000000..ca5daa5
+--- /dev/null
++++ b/core/depth_anything/dinov2_layers/layer_scale.py
+@@ -0,0 +1,28 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++# All rights reserved.
++#
++# This source code is licensed under the license found in the
++# LICENSE file in the root directory of this source tree.
++
++# Modified from: https://github.com/huggingface/pytorch-image-models/blob/main/timm/models/vision_transformer.py#L103-L110
++
++from typing import Union
++
++import torch
++from torch import Tensor
++from torch import nn
++
++
++class LayerScale(nn.Module):
++    def __init__(
++        self,
++        dim: int,
++        init_values: Union[float, Tensor] = 1e-5,
++        inplace: bool = False,
++    ) -> None:
++        super().__init__()
++        self.inplace = inplace
++        self.gamma = nn.Parameter(init_values * torch.ones(dim))
++
++    def forward(self, x: Tensor) -> Tensor:
++        return x.mul_(self.gamma) if self.inplace else x * self.gamma
+diff --git a/core/depth_anything/dinov2_layers/mlp.py b/core/depth_anything/dinov2_layers/mlp.py
+new file mode 100644
+index 0000000..5e4b315
+--- /dev/null
++++ b/core/depth_anything/dinov2_layers/mlp.py
+@@ -0,0 +1,41 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++# All rights reserved.
++#
++# This source code is licensed under the license found in the
++# LICENSE file in the root directory of this source tree.
++
++# References:
++#   https://github.com/facebookresearch/dino/blob/master/vision_transformer.py
++#   https://github.com/rwightman/pytorch-image-models/tree/master/timm/layers/mlp.py
++
++
++from typing import Callable, Optional
++
++from torch import Tensor, nn
++
++
++class Mlp(nn.Module):
++    def __init__(
++        self,
++        in_features: int,
++        hidden_features: Optional[int] = None,
++        out_features: Optional[int] = None,
++        act_layer: Callable[..., nn.Module] = nn.GELU,
++        drop: float = 0.0,
++        bias: bool = True,
++    ) -> None:
++        super().__init__()
++        out_features = out_features or in_features
++        hidden_features = hidden_features or in_features
++        self.fc1 = nn.Linear(in_features, hidden_features, bias=bias)
++        self.act = act_layer()
++        self.fc2 = nn.Linear(hidden_features, out_features, bias=bias)
++        self.drop = nn.Dropout(drop)
++
++    def forward(self, x: Tensor) -> Tensor:
++        x = self.fc1(x)
++        x = self.act(x)
++        x = self.drop(x)
++        x = self.fc2(x)
++        x = self.drop(x)
++        return x
+diff --git a/core/depth_anything/dinov2_layers/patch_embed.py b/core/depth_anything/dinov2_layers/patch_embed.py
+new file mode 100644
+index 0000000..574abe4
+--- /dev/null
++++ b/core/depth_anything/dinov2_layers/patch_embed.py
+@@ -0,0 +1,89 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++# All rights reserved.
++#
++# This source code is licensed under the license found in the
++# LICENSE file in the root directory of this source tree.
++
++# References:
++#   https://github.com/facebookresearch/dino/blob/master/vision_transformer.py
++#   https://github.com/rwightman/pytorch-image-models/tree/master/timm/layers/patch_embed.py
++
++from typing import Callable, Optional, Tuple, Union
++
++from torch import Tensor
++import torch.nn as nn
++
++
++def make_2tuple(x):
++    if isinstance(x, tuple):
++        assert len(x) == 2
++        return x
++
++    assert isinstance(x, int)
++    return (x, x)
++
++
++class PatchEmbed(nn.Module):
++    """
++    2D image to patch embedding: (B,C,H,W) -> (B,N,D)
++
++    Args:
++        img_size: Image size.
++        patch_size: Patch token size.
++        in_chans: Number of input image channels.
++        embed_dim: Number of linear projection output channels.
++        norm_layer: Normalization layer.
++    """
++
++    def __init__(
++        self,
++        img_size: Union[int, Tuple[int, int]] = 224,
++        patch_size: Union[int, Tuple[int, int]] = 16,
++        in_chans: int = 3,
++        embed_dim: int = 768,
++        norm_layer: Optional[Callable] = None,
++        flatten_embedding: bool = True,
++    ) -> None:
++        super().__init__()
++
++        image_HW = make_2tuple(img_size)
++        patch_HW = make_2tuple(patch_size)
++        patch_grid_size = (
++            image_HW[0] // patch_HW[0],
++            image_HW[1] // patch_HW[1],
++        )
++
++        self.img_size = image_HW
++        self.patch_size = patch_HW
++        self.patches_resolution = patch_grid_size
++        self.num_patches = patch_grid_size[0] * patch_grid_size[1]
++
++        self.in_chans = in_chans
++        self.embed_dim = embed_dim
++
++        self.flatten_embedding = flatten_embedding
++
++        self.proj = nn.Conv2d(in_chans, embed_dim, kernel_size=patch_HW, stride=patch_HW)
++        self.norm = norm_layer(embed_dim) if norm_layer else nn.Identity()
++
++    def forward(self, x: Tensor) -> Tensor:
++        _, _, H, W = x.shape
++        patch_H, patch_W = self.patch_size
++
++        assert H % patch_H == 0, f"Input image height {H} is not a multiple of patch height {patch_H}"
++        assert W % patch_W == 0, f"Input image width {W} is not a multiple of patch width: {patch_W}"
++
++        x = self.proj(x)  # B C H W
++        H, W = x.size(2), x.size(3)
++        x = x.flatten(2).transpose(1, 2)  # B HW C
++        x = self.norm(x)
++        if not self.flatten_embedding:
++            x = x.reshape(-1, H, W, self.embed_dim)  # B H W C
++        return x
++
++    def flops(self) -> float:
++        Ho, Wo = self.patches_resolution
++        flops = Ho * Wo * self.embed_dim * self.in_chans * (self.patch_size[0] * self.patch_size[1])
++        if self.norm is not None:
++            flops += Ho * Wo * self.embed_dim
++        return flops
+diff --git a/core/depth_anything/dinov2_layers/swiglu_ffn.py b/core/depth_anything/dinov2_layers/swiglu_ffn.py
+new file mode 100644
+index 0000000..b3324b2
+--- /dev/null
++++ b/core/depth_anything/dinov2_layers/swiglu_ffn.py
+@@ -0,0 +1,63 @@
++# Copyright (c) Meta Platforms, Inc. and affiliates.
++# All rights reserved.
++#
++# This source code is licensed under the license found in the
++# LICENSE file in the root directory of this source tree.
++
++from typing import Callable, Optional
++
++from torch import Tensor, nn
++import torch.nn.functional as F
++
++
++class SwiGLUFFN(nn.Module):
++    def __init__(
++        self,
++        in_features: int,
++        hidden_features: Optional[int] = None,
++        out_features: Optional[int] = None,
++        act_layer: Callable[..., nn.Module] = None,
++        drop: float = 0.0,
++        bias: bool = True,
++    ) -> None:
++        super().__init__()
++        out_features = out_features or in_features
++        hidden_features = hidden_features or in_features
++        self.w12 = nn.Linear(in_features, 2 * hidden_features, bias=bias)
++        self.w3 = nn.Linear(hidden_features, out_features, bias=bias)
++
++    def forward(self, x: Tensor) -> Tensor:
++        x12 = self.w12(x)
++        x1, x2 = x12.chunk(2, dim=-1)
++        hidden = F.silu(x1) * x2
++        return self.w3(hidden)
++
++
++try:
++    from xformers.ops import SwiGLU
++
++    XFORMERS_AVAILABLE = True
++except ImportError:
++    SwiGLU = SwiGLUFFN
++    XFORMERS_AVAILABLE = False
++
++
++class SwiGLUFFNFused(SwiGLU):
++    def __init__(
++        self,
++        in_features: int,
++        hidden_features: Optional[int] = None,
++        out_features: Optional[int] = None,
++        act_layer: Callable[..., nn.Module] = None,
++        drop: float = 0.0,
++        bias: bool = True,
++    ) -> None:
++        out_features = out_features or in_features
++        hidden_features = hidden_features or in_features
++        hidden_features = (int(hidden_features * 2 / 3) + 7) // 8 * 8
++        super().__init__(
++            in_features=in_features,
++            hidden_features=hidden_features,
++            out_features=out_features,
++            bias=bias,
++        )
+diff --git a/core/depth_anything/dpt.py b/core/depth_anything/dpt.py
+new file mode 100644
+index 0000000..8d57a61
+--- /dev/null
++++ b/core/depth_anything/dpt.py
+@@ -0,0 +1,343 @@
++import math
++import torch
++import torch.nn as nn
++import torch.nn.functional as F
++
++import matplotlib.pyplot as plt
++import numpy as np
++
++try:
++    from .dinov2 import DINOv2, DinoVisionTransformer
++    from .util.blocks import FeatureFusionBlock, _make_scratch
++    from .lora import LoRA
++except ImportError:
++    # Fallback per quando viene eseguito direttamente
++    from dinov2 import DINOv2, DinoVisionTransformer
++    from util.blocks import FeatureFusionBlock, _make_scratch
++    from lora import LoRA
++
++def _make_fusion_block(features, use_bn, size = None):
++    return FeatureFusionBlock(
++        features,
++        nn.ReLU(False),
++        deconv=False,
++        bn=use_bn,
++        expand=False,
++        align_corners=True,
++        size=size,
++    )
++
++class DPTHead(nn.Module):
++    def __init__(
++        self, 
++        in_channels, 
++        features=256, 
++        use_bn=False, 
++        out_channels=[256, 512, 1024, 1024], 
++        use_clstoken=False
++    ):
++        super(DPTHead, self).__init__()
++
++        self.nclass = 1
++        self.use_clstoken = use_clstoken
++
++        self.projects = nn.ModuleList([
++            nn.Conv2d(
++                in_channels=in_channels,
++                out_channels=out_channel,
++                kernel_size=1,
++                stride=1,
++                padding=0,
++            ) for out_channel in out_channels
++        ])
++
++        self.resize_layers = nn.ModuleList([
++            nn.ConvTranspose2d(
++                in_channels=out_channels[0],
++                out_channels=out_channels[0],
++                kernel_size=4,
++                stride=4,
++                padding=0),
++            nn.ConvTranspose2d(
++                in_channels=out_channels[1],
++                out_channels=out_channels[1],
++                kernel_size=2,
++                stride=2,
++                padding=0),
++            nn.Identity(),
++            nn.Conv2d(
++                in_channels=out_channels[3],
++                out_channels=out_channels[3],
++                kernel_size=3,
++                stride=2,
++                padding=1)
++        ])
++
++        if use_clstoken:
++            self.readout_projects = nn.ModuleList()
++            for _ in range(len(self.projects)):
++                self.readout_projects.append(
++                    nn.Sequential(
++                        nn.Linear(2 * in_channels, in_channels),
++                        nn.GELU()))
++
++        self.scratch = _make_scratch(
++            out_channels,
++            features,
++            groups=1,
++            expand=False,
++        )
++
++        self.scratch.stem_transpose = None # type: ignore
++
++        self.scratch.refinenet1 = _make_fusion_block(features, use_bn)
++        self.scratch.refinenet2 = _make_fusion_block(features, use_bn)
++        self.scratch.refinenet3 = _make_fusion_block(features, use_bn)
++        self.scratch.refinenet4 = _make_fusion_block(features, use_bn)
++
++        head_features_1 = features
++        head_features_2 = 32
++
++        self.scratch.output_conv1 = nn.Conv2d(head_features_1, head_features_1 // 2, kernel_size=3, stride=1, padding=1)
++
++        self.scratch.output_conv2 = nn.Sequential(
++            nn.Conv2d(head_features_1 // 2, head_features_2, kernel_size=3, stride=1, padding=1),
++            nn.ReLU(True),
++            nn.Conv2d(head_features_2, 1, kernel_size=1, stride=1, padding=0),
++            nn.ReLU(True),
++            nn.Identity(),
++        )
++        
++    def forward(self, out_features, patch_h, patch_w, return_intermediate=False, patch_size=14):
++        out = []
++        for i, x in enumerate(out_features):
++            if self.use_clstoken:
++                x, cls_token = x[0], x[1]
++                readout = cls_token.unsqueeze(1).expand_as(x)
++                x = self.readout_projects[i](torch.cat((x, readout), -1))
++            else:
++                x = x[0]
++
++            x = x.permute(0, 2, 1).reshape((x.shape[0], x.shape[-1], patch_h, patch_w))
++
++            x = self.projects[i](x)
++            x = self.resize_layers[i](x)
++
++            out.append(x)
++
++        layer_1, layer_2, layer_3, layer_4 = out
++
++        layer_1_rn = self.scratch.layer1_rn(layer_1) # type: ignore
++        layer_2_rn = self.scratch.layer2_rn(layer_2) # type: ignore
++        layer_3_rn = self.scratch.layer3_rn(layer_3) # type: ignore
++        layer_4_rn = self.scratch.layer4_rn(layer_4) # type: ignore
++
++        path_4 = self.scratch.refinenet4(layer_4_rn, size=layer_3_rn.shape[2:]) # type: ignore
++        path_3 = self.scratch.refinenet3(path_4, layer_3_rn, size=layer_2_rn.shape[2:]) # type: ignore
++        path_2 = self.scratch.refinenet2(path_3, layer_2_rn, size=layer_1_rn.shape[2:]) # type: ignore
++        path_1 = self.scratch.refinenet1(path_2, layer_1_rn) # type: ignore
++
++        out = self.scratch.output_conv1(path_1) # type: ignore
++        out = F.interpolate(out, (int(patch_h * patch_size), int(patch_w * patch_size)), mode="bilinear", align_corners=True)
++        out2 = self.scratch.output_conv2(out) # type: ignore
++        
++        if return_intermediate:
++            depth = out2
++            #Depth Anything already outputs disparity
++            disp = F.relu(depth)
++
++            #debug print
++            # _tmp = disp[0,0].cpu().detach().numpy()
++            # plt.imsave('debug_disp.png', _tmp, cmap='Spectral_r')
++
++            return out, path_1, path_2, path_3, path_4, disp
++        else:
++            out = out2
++            return out
++
++# https://github.com/RobvanGastel/dinov3-finetune/blob/main/dino_finetune/model/dino.py
++class DepthAnythingV2(nn.Module):
++    model_configs = {
++        'vitl': {'encoder': 'vitl', 'features': 256, 'out_channels': [256, 512, 1024, 1024]},
++        'vitb': {'encoder': 'vitb', 'features': 128, 'out_channels': [96, 192, 384, 768]},
++        'vits': {'encoder': 'vits', 'features': 64, 'out_channels': [48, 96, 192, 384]}
++    }
++        
++    def init_from_config(self, encoder='vitl', features=256, out_channels=[256, 512, 1024, 1024], use_bn=False, use_clstoken=False, pretrained_dino=False, use_lora=False, lora_rank=3):
++        assert encoder in ['vits', 'vitb', 'vitl']
++
++        self.intermediate_layer_idx = {   #!NOTE For V2
++            'vits': [2, 5, 8, 11],
++            'vitb': [2, 5, 8, 11],
++            'vitl': [4, 11, 17, 23],
++            'vitg': [9, 19, 29, 39]
++        }
++        
++        self.encoder = encoder
++        self.use_lora = use_lora
++        pretrained = DINOv2(model_name=encoder)
++        self.depth_anything = DepthAnythingWrapper(
++            pretrained,
++            DPTHead(pretrained.embed_dim, features, use_bn, out_channels=out_channels, use_clstoken=use_clstoken),
++            use_lora=use_lora,
++            lora_rank=lora_rank
++        )
++
++    def __init__(self, encoder, use_lora=False, lora_rank=3):
++        super(DepthAnythingV2, self).__init__()
++        config = self.model_configs[encoder].copy()
++        config.update({'use_lora': use_lora, 'lora_rank': lora_rank})
++        self.init_from_config(**config)
++
++
++    def forward(self, x):
++        """
++        @x: (B,C,H,W)
++        """
++        h, w = x.shape[-2:]
++
++        # x = (x - x.min()) / (x.max() - x.min())  # Normalize to [0, 1]
++        # plt.imsave('debug_input.png', x[0].permute(1,2,0).cpu().detach().numpy())
++        
++        features = self.depth_anything.pretrained.get_intermediate_layers(x, self.intermediate_layer_idx[self.encoder], return_class_token=True)
++
++        patch_size = self.depth_anything.pretrained.patch_size
++        patch_h, patch_w = h // patch_size, w // patch_size
++        out, path_1, path_2, path_3, path_4, disp = self.depth_anything.depth_head.forward(features, patch_h, patch_w, return_intermediate=True)
++
++        return {'out':out, 'path_1':path_1, 'path_2':path_2, 'path_3':path_3, 'path_4':path_4, 'features':features, 'disp':disp}  # path_1 is 1/2; path_2 is 1/4
++
++class DepthAnythingWrapper(nn.Module):
++    def __init__(self, pretrained: DinoVisionTransformer, depth_head: DPTHead, use_lora: bool = False, lora_rank: int = 3):
++        super().__init__()
++        self.pretrained = pretrained
++        self.depth_head = depth_head
++        self.use_lora = use_lora
++        self.lora_rank = lora_rank
++        self.freeze_model()
++        
++        if use_lora:
++            self._add_lora_layers()
++
++    def freeze_model(self):
++        model = self.pretrained.eval()
++        for p in model.parameters():
++            p.requires_grad = False
++        for p in model.buffers():
++            p.requires_grad = False
++        self.pretrained = model
++        
++        model = self.depth_head.eval()
++        for p in model.parameters():
++            p.requires_grad = False
++        for p in model.buffers():
++            p.requires_grad = False
++        self.depth_head = model
++            
++    def _add_lora_layers(self):
++        """Add LoRA layers to the pretrained model's attention blocks"""
++        # Freeze original parameters
++        for param in self.pretrained.parameters():
++            param.requires_grad = False
++            
++        # Add LoRA layers
++        self.lora_layers = list(range(len(self.pretrained.blocks)))
++        self.w_a = nn.ModuleList()
++        self.w_b = nn.ModuleList()
++        
++        for i, block in enumerate(self.pretrained.blocks):
++            if i not in self.lora_layers:
++                continue
++                
++            w_qkv_linear = block.attn.qkv
++            dim = w_qkv_linear.in_features
++            
++            # Create LoRA layers for Q and V
++            w_a_linear_q, w_b_linear_q = self._create_lora_layer(dim, self.lora_rank)
++            w_a_linear_v, w_b_linear_v = self._create_lora_layer(dim, self.lora_rank)
++            
++            self.w_a.extend([w_a_linear_q, w_a_linear_v])
++            self.w_b.extend([w_b_linear_q, w_b_linear_v])
++            
++            # Replace the original qkv layer with LoRA version
++            block.attn.qkv = LoRA(
++                w_qkv_linear,
++                w_a_linear_q,
++                w_b_linear_q,
++                w_a_linear_v,
++                w_b_linear_v,
++            )
++            
++        self._reset_lora_parameters()
++        
++    def _create_lora_layer(self, dim: int, r: int):
++        """Create a pair of LoRA layers (A and B matrices)"""
++        w_a = nn.Linear(dim, r, bias=False)
++        w_b = nn.Linear(r, dim, bias=False)
++        return w_a, w_b
++        
++    def _reset_lora_parameters(self) -> None:
++        """Initialize LoRA parameters"""
++        for w_a in self.w_a:
++            nn.init.kaiming_uniform_(w_a.weight, a=math.sqrt(5))
++        for w_b in self.w_b:
++            nn.init.zeros_(w_b.weight)
++            
++    def save_lora_parameters(self, filename: str) -> None:
++        """Save the LoRA weights to a .pt file
++        
++        Args:
++            filename (str): Filename of the weights
++        """
++        if not self.use_lora:
++            print("Warning: LoRA is not enabled")
++            return
++            
++        w_a_dict = {f"w_a_{i:03d}": self.w_a[i].weight for i in range(len(self.w_a))}
++        w_b_dict = {f"w_b_{i:03d}": self.w_b[i].weight for i in range(len(self.w_b))}
++        
++        torch.save({**w_a_dict, **w_b_dict}, filename)
++        
++    def load_lora_parameters(self, filename: str) -> None:
++        """Load the LoRA weights from a file
++        
++        Args:
++            filename (str): File name of the weights
++        """
++        if not self.use_lora:
++            print("Warning: LoRA is not enabled")
++            return
++            
++        state_dict = torch.load(filename)
++        
++        for i, w_a_linear in enumerate(self.w_a):
++            saved_key = f"w_a_{i:03d}"
++            if saved_key in state_dict:
++                w_a_linear.weight = nn.Parameter(state_dict[saved_key])
++                
++        for i, w_b_linear in enumerate(self.w_b):
++            saved_key = f"w_b_{i:03d}"
++            if saved_key in state_dict:
++                w_b_linear.weight = nn.Parameter(state_dict[saved_key])
++                
++    def freeze_pretrained(self) -> None:
++        """Freeze the pretrained backbone parameters"""
++        for param in self.pretrained.parameters():
++            param.requires_grad = False
++            
++    def unfreeze_pretrained(self) -> None:
++        """Unfreeze the pretrained backbone parameters (except LoRA layers)"""
++        for param in self.pretrained.parameters():
++            param.requires_grad = True
++            
++    def get_lora_parameters(self):
++        """Get all LoRA parameters for optimization"""
++        if not self.use_lora:
++            return []
++        
++        params = []
++        for w_a in self.w_a:
++            params.extend(w_a.parameters())
++        for w_b in self.w_b:
++            params.extend(w_b.parameters())
++        return params
+diff --git a/core/depth_anything/lora.py b/core/depth_anything/lora.py
+new file mode 100644
+index 0000000..f95d26b
+--- /dev/null
++++ b/core/depth_anything/lora.py
+@@ -0,0 +1,44 @@
++import torch
++import torch.nn as nn
++
++#https://github.com/RobvanGastel/dinov3-finetune/blob/main/dino_finetune/model/lora.py
++class LoRA(nn.Module):
++    """Low-Rank Adaptation for the for Query (Q), Key (Q), Value (V) matrices"""
++
++    def __init__(
++        self,
++        qkv: nn.Module,
++        linear_a_q: nn.Module,
++        linear_b_q: nn.Module,
++        linear_a_v: nn.Module,
++        linear_b_v: nn.Module,
++    ):
++        super().__init__()
++        self.qkv = qkv
++        self.linear_a_q = linear_a_q
++        self.linear_b_q = linear_b_q
++        self.linear_a_v = linear_a_v
++        self.linear_b_v = linear_b_v
++        self.dim = qkv.in_features
++        self.w_identity = torch.eye(self.dim)
++
++        self.in_features = qkv.in_features
++        self.out_features = qkv.out_features
++
++    def forward(self, x) -> torch.Tensor:
++        # Compute the original qkv
++        qkv = self.qkv(x)  # Shape: (B, N, 3 * org_C)
++        
++        # print("qkv first ten weights:", self.qkv.weight.flatten()[:10])
++        # print("LoRA A Q first ten weights:", self.linear_a_q.weight.flatten()[:10])
++
++        # Compute the new q and v components
++        new_q = self.linear_b_q(self.linear_a_q(x))
++        new_v = self.linear_b_v(self.linear_a_v(x))
++
++        # Add new q and v components to the original qkv tensor
++        qkv[:, :, : self.dim] += new_q
++        qkv[:, :, -self.dim :] += new_v
++
++        return qkv
++    
+\ No newline at end of file
+diff --git a/core/depth_anything/util/blocks.py b/core/depth_anything/util/blocks.py
+new file mode 100644
+index 0000000..cdf5947
+--- /dev/null
++++ b/core/depth_anything/util/blocks.py
+@@ -0,0 +1,153 @@
++import torch.nn as nn
++
++
++def _make_scratch(in_shape, out_shape, groups=1, expand=False):
++    scratch = nn.Module()
++
++    out_shape1 = out_shape
++    out_shape2 = out_shape
++    out_shape3 = out_shape
++    if len(in_shape) >= 4:
++        out_shape4 = out_shape
++
++    if expand:
++        out_shape1 = out_shape
++        out_shape2 = out_shape*2
++        out_shape3 = out_shape*4
++        if len(in_shape) >= 4:
++            out_shape4 = out_shape*8
++
++    scratch.layer1_rn = nn.Conv2d(
++        in_shape[0], out_shape1, kernel_size=3, stride=1, padding=1, bias=False, groups=groups
++    )
++    scratch.layer2_rn = nn.Conv2d(
++        in_shape[1], out_shape2, kernel_size=3, stride=1, padding=1, bias=False, groups=groups
++    )
++    scratch.layer3_rn = nn.Conv2d(
++        in_shape[2], out_shape3, kernel_size=3, stride=1, padding=1, bias=False, groups=groups
++    )
++    if len(in_shape) >= 4:
++        scratch.layer4_rn = nn.Conv2d(
++            in_shape[3], out_shape4, kernel_size=3, stride=1, padding=1, bias=False, groups=groups
++        )
++
++    return scratch
++
++
++class ResidualConvUnit(nn.Module):
++    """Residual convolution module.
++    """
++
++    def __init__(self, features, activation, bn):
++        """Init.
++
++        Args:
++            features (int): number of features
++        """
++        super().__init__()
++
++        self.bn = bn
++
++        self.groups=1
++
++        self.conv1 = nn.Conv2d(
++            features, features, kernel_size=3, stride=1, padding=1, bias=True, groups=self.groups
++        )
++
++        self.conv2 = nn.Conv2d(
++            features, features, kernel_size=3, stride=1, padding=1, bias=True, groups=self.groups
++        )
++
++        if self.bn==True:
++            self.bn1 = nn.BatchNorm2d(features)
++            self.bn2 = nn.BatchNorm2d(features)
++
++        self.activation = activation
++
++        self.skip_add = nn.quantized.FloatFunctional()
++
++    def forward(self, x):
++        """Forward pass.
++
++        Args:
++            x (tensor): input
++
++        Returns:
++            tensor: output
++        """
++
++        out = self.activation(x)
++        out = self.conv1(out)
++        if self.bn==True:
++            out = self.bn1(out)
++
++        out = self.activation(out)
++        out = self.conv2(out)
++        if self.bn==True:
++            out = self.bn2(out)
++
++        if self.groups > 1:
++            out = self.conv_merge(out)
++
++        return self.skip_add.add(out, x)
++
++
++class FeatureFusionBlock(nn.Module):
++    """Feature fusion block.
++    """
++
++    def __init__(self, features, activation, deconv=False, bn=False, expand=False, align_corners=True, size=None):
++        """Init.
++
++        Args:
++            features (int): number of features
++        """
++        super(FeatureFusionBlock, self).__init__()
++
++        self.deconv = deconv
++        self.align_corners = align_corners
++
++        self.groups=1
++
++        self.expand = expand
++        out_features = features
++        if self.expand==True:
++            out_features = features//2
++
++        self.out_conv = nn.Conv2d(features, out_features, kernel_size=1, stride=1, padding=0, bias=True, groups=1)
++
++        self.resConfUnit1 = ResidualConvUnit(features, activation, bn)
++        self.resConfUnit2 = ResidualConvUnit(features, activation, bn)
++
++        self.skip_add = nn.quantized.FloatFunctional()
++
++        self.size=size
++
++    def forward(self, *xs, size=None):
++        """Forward pass.
++
++        Returns:
++            tensor: output
++        """
++        output = xs[0]
++
++        if len(xs) == 2:
++            res = self.resConfUnit1(xs[1])
++            output = self.skip_add.add(output, res)
++
++        output = self.resConfUnit2(output)
++
++        if (size is None) and (self.size is None):
++            modifier = {"scale_factor": 2}
++        elif size is None:
++            modifier = {"size": self.size}
++        else:
++            modifier = {"size": size}
++
++        output = nn.functional.interpolate(
++            output, **modifier, mode="bilinear", align_corners=self.align_corners
++        )
++
++        output = self.out_conv(output)
++
++        return output
+diff --git a/core/depth_anything/util/transform.py b/core/depth_anything/util/transform.py
+new file mode 100644
+index 0000000..d542fef
+--- /dev/null
++++ b/core/depth_anything/util/transform.py
+@@ -0,0 +1,248 @@
++import random
++from PIL import Image, ImageOps, ImageFilter
++import torch
++from torchvision import transforms
++import torch.nn.functional as F
++
++import numpy as np
++import cv2
++import math
++
++
++def apply_min_size(sample, size, image_interpolation_method=cv2.INTER_AREA):
++    """Rezise the sample to ensure the given size. Keeps aspect ratio.
++
++    Args:
++        sample (dict): sample
++        size (tuple): image size
++
++    Returns:
++        tuple: new size
++    """
++    shape = list(sample["disparity"].shape)
++
++    if shape[0] >= size[0] and shape[1] >= size[1]:
++        return sample
++
++    scale = [0, 0]
++    scale[0] = size[0] / shape[0]
++    scale[1] = size[1] / shape[1]
++
++    scale = max(scale)
++
++    shape[0] = math.ceil(scale * shape[0])
++    shape[1] = math.ceil(scale * shape[1])
++
++    # resize
++    sample["image"] = cv2.resize(
++        sample["image"], tuple(shape[::-1]), interpolation=image_interpolation_method
++    )
++
++    sample["disparity"] = cv2.resize(
++        sample["disparity"], tuple(shape[::-1]), interpolation=cv2.INTER_NEAREST
++    )
++    sample["mask"] = cv2.resize(
++        sample["mask"].astype(np.float32),
++        tuple(shape[::-1]),
++        interpolation=cv2.INTER_NEAREST,
++    )
++    sample["mask"] = sample["mask"].astype(bool)
++
++    return tuple(shape)
++
++
++class Resize(object):
++    """Resize sample to given size (width, height).
++    """
++
++    def __init__(
++        self,
++        width,
++        height,
++        resize_target=True,
++        keep_aspect_ratio=False,
++        ensure_multiple_of=1,
++        resize_method="lower_bound",
++        image_interpolation_method=cv2.INTER_AREA,
++    ):
++        """Init.
++
++        Args:
++            width (int): desired output width
++            height (int): desired output height
++            resize_target (bool, optional):
++                True: Resize the full sample (image, mask, target).
++                False: Resize image only.
++                Defaults to True.
++            keep_aspect_ratio (bool, optional):
++                True: Keep the aspect ratio of the input sample.
++                Output sample might not have the given width and height, and
++                resize behaviour depends on the parameter 'resize_method'.
++                Defaults to False.
++            ensure_multiple_of (int, optional):
++                Output width and height is constrained to be multiple of this parameter.
++                Defaults to 1.
++            resize_method (str, optional):
++                "lower_bound": Output will be at least as large as the given size.
++                "upper_bound": Output will be at max as large as the given size. (Output size might be smaller than given size.)
++                "minimal": Scale as least as possible.  (Output size might be smaller than given size.)
++                Defaults to "lower_bound".
++        """
++        self.__width = width
++        self.__height = height
++
++        self.__resize_target = resize_target
++        self.__keep_aspect_ratio = keep_aspect_ratio
++        self.__multiple_of = ensure_multiple_of
++        self.__resize_method = resize_method
++        self.__image_interpolation_method = image_interpolation_method
++
++    def constrain_to_multiple_of(self, x, min_val=0, max_val=None):
++        y = (np.round(x / self.__multiple_of) * self.__multiple_of).astype(int)
++
++        if max_val is not None and y > max_val:
++            y = (np.floor(x / self.__multiple_of) * self.__multiple_of).astype(int)
++
++        if y < min_val:
++            y = (np.ceil(x / self.__multiple_of) * self.__multiple_of).astype(int)
++
++        return y
++
++    def get_size(self, width, height):
++        # determine new height and width
++        scale_height = self.__height / height
++        scale_width = self.__width / width
++
++        if self.__keep_aspect_ratio:
++            if self.__resize_method == "lower_bound":
++                # scale such that output size is lower bound
++                if scale_width > scale_height:
++                    # fit width
++                    scale_height = scale_width
++                else:
++                    # fit height
++                    scale_width = scale_height
++            elif self.__resize_method == "upper_bound":
++                # scale such that output size is upper bound
++                if scale_width < scale_height:
++                    # fit width
++                    scale_height = scale_width
++                else:
++                    # fit height
++                    scale_width = scale_height
++            elif self.__resize_method == "minimal":
++                # scale as least as possbile
++                if abs(1 - scale_width) < abs(1 - scale_height):
++                    # fit width
++                    scale_height = scale_width
++                else:
++                    # fit height
++                    scale_width = scale_height
++            else:
++                raise ValueError(
++                    f"resize_method {self.__resize_method} not implemented"
++                )
++
++        if self.__resize_method == "lower_bound":
++            new_height = self.constrain_to_multiple_of(
++                scale_height * height, min_val=self.__height
++            )
++            new_width = self.constrain_to_multiple_of(
++                scale_width * width, min_val=self.__width
++            )
++        elif self.__resize_method == "upper_bound":
++            new_height = self.constrain_to_multiple_of(
++                scale_height * height, max_val=self.__height
++            )
++            new_width = self.constrain_to_multiple_of(
++                scale_width * width, max_val=self.__width
++            )
++        elif self.__resize_method == "minimal":
++            new_height = self.constrain_to_multiple_of(scale_height * height)
++            new_width = self.constrain_to_multiple_of(scale_width * width)
++        else:
++            raise ValueError(f"resize_method {self.__resize_method} not implemented")
++
++        return (new_width, new_height)
++
++    def __call__(self, sample):
++        width, height = self.get_size(
++            sample["image"].shape[1], sample["image"].shape[0]
++        )
++
++        # resize sample
++        sample["image"] = cv2.resize(
++            sample["image"],
++            (width, height),
++            interpolation=self.__image_interpolation_method,
++        )
++
++        if self.__resize_target:
++            if "disparity" in sample:
++                sample["disparity"] = cv2.resize(
++                    sample["disparity"],
++                    (width, height),
++                    interpolation=cv2.INTER_NEAREST,
++                )
++
++            if "depth" in sample:
++                sample["depth"] = cv2.resize(
++                    sample["depth"], (width, height), interpolation=cv2.INTER_NEAREST
++                )
++
++            if "semseg_mask" in sample:
++                # sample["semseg_mask"] = cv2.resize(
++                #     sample["semseg_mask"], (width, height), interpolation=cv2.INTER_NEAREST
++                # )
++                sample["semseg_mask"] = F.interpolate(torch.from_numpy(sample["semseg_mask"]).float()[None, None, ...], (height, width), mode='nearest').numpy()[0, 0]
++
++            if "mask" in sample:
++                sample["mask"] = cv2.resize(
++                    sample["mask"].astype(np.float32),
++                    (width, height),
++                    interpolation=cv2.INTER_NEAREST,
++                )
++                # sample["mask"] = sample["mask"].astype(bool)
++
++        # print(sample['image'].shape, sample['depth'].shape)
++        return sample
++
++
++class NormalizeImage(object):
++    """Normlize image by given mean and std.
++    """
++
++    def __init__(self, mean, std):
++        self.__mean = mean
++        self.__std = std
++
++    def __call__(self, sample):
++        sample["image"] = (sample["image"] - self.__mean) / self.__std
++
++        return sample
++
++
++class PrepareForNet(object):
++    """Prepare sample for usage as network input.
++    """
++
++    def __init__(self):
++        pass
++
++    def __call__(self, sample):
++        image = np.transpose(sample["image"], (2, 0, 1))
++        sample["image"] = np.ascontiguousarray(image).astype(np.float32)
++
++        if "mask" in sample:
++            sample["mask"] = sample["mask"].astype(np.float32)
++            sample["mask"] = np.ascontiguousarray(sample["mask"])
++
++        if "depth" in sample:
++            depth = sample["depth"].astype(np.float32)
++            sample["depth"] = np.ascontiguousarray(depth)
++
++        if "semseg_mask" in sample:
++            sample["semseg_mask"] = sample["semseg_mask"].astype(np.float32)
++            sample["semseg_mask"] = np.ascontiguousarray(sample["semseg_mask"])
++
++        return sample
+diff --git a/core/extractor.py b/core/extractor.py
+index 870214d..abb034b 100644
+--- a/core/extractor.py
++++ b/core/extractor.py
+@@ -7,15 +7,24 @@
+ # license agreement from NVIDIA CORPORATION is strictly prohibited.
+ 
+ 
+-import torch,logging,os,sys,urllib,warnings
++import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+-code_dir = os.path.dirname(os.path.realpath(__file__))
+-sys.path.append(f'{code_dir}/../')
+-from core.submodule import *
+-from Utils import *
+ import timm
+ 
++from .submodule import *
++from .myutils import *
++from .depth_anything.dpt import DepthAnythingV2
++
++class DummyNoGrad:
++    def __init__(self) -> None:
++        pass
++
++    def __enter__(self) -> None:
++        pass
++
++    def __exit__(self, exc_type, exc_value, traceback) -> None:
++        pass
+ 
+ class ResidualBlock(nn.Module):
+     def __init__(self, in_planes, planes, norm_fn='group', stride=1):
+@@ -196,7 +205,7 @@ class ContextNetDino(MultiBasicEncoder):
+         self.patch_size = 14
+         self.image_size = 518
+         self.vit_feat_dim = 384
+-        code_dir = os.path.dirname(os.path.realpath(__file__))
++        
+ 
+         self.out_dims = output_dim
+ 
+@@ -230,7 +239,7 @@ class ContextNetDino(MultiBasicEncoder):
+           nn.Conv2d(128, 128, kernel_size=4, stride=4, padding=0),
+           nn.BatchNorm2d(128),
+         )
+-        vit_dim = DepthAnythingFeature.model_configs[self.args.vit_size]['features']//2
++        vit_dim = DepthAnythingV2.model_configs[self.args.vit_size]['features']//2
+         self.conv2 = BasicConv(128+vit_dim, 128, kernel_size=3, padding=1)
+         self.norm = nn.BatchNorm2d(256)
+ 
+@@ -283,55 +292,23 @@ class ContextNetDino(MultiBasicEncoder):
+         return (outputs04, outputs08, outputs16)
+ 
+ 
+-class DepthAnythingFeature(nn.Module):
+-    model_configs = {
+-        'vitl': {'encoder': 'vitl', 'features': 256, 'out_channels': [256, 512, 1024, 1024]},
+-        'vitb': {'encoder': 'vitb', 'features': 128, 'out_channels': [96, 192, 384, 768]},
+-        'vits': {'encoder': 'vits', 'features': 64, 'out_channels': [48, 96, 192, 384]}
+-    }
+-
+-    def __init__(self, encoder='vits'):
+-        super().__init__()
+-        from depth_anything.dpt import DepthAnything
+-        self.encoder = encoder
+-        depth_anything = DepthAnything(self.model_configs[encoder])
+-        self.depth_anything = depth_anything
+-
+-        self.intermediate_layer_idx = {   #!NOTE For V2
+-            'vits': [2, 5, 8, 11],
+-            'vitb': [2, 5, 8, 11],
+-            'vitl': [4, 11, 17, 23],
+-            'vitg': [9, 19, 29, 39]
+-        }
+-
+-
+-    def forward(self, x):
+-        """
+-        @x: (B,C,H,W)
+-        """
+-        h, w = x.shape[-2:]
+-        features = self.depth_anything.pretrained.get_intermediate_layers(x, self.intermediate_layer_idx[self.encoder], return_class_token=True)
+-
+-
+-        patch_size = self.depth_anything.pretrained.patch_size
+-        patch_h, patch_w = h // patch_size, w // patch_size
+-        out, path_1, path_2, path_3, path_4, disp = self.depth_anything.depth_head.forward(features, patch_h, patch_w, return_intermediate=True)
+-
+-        return {'out':out, 'path_1':path_1, 'path_2':path_2, 'path_3':path_3, 'path_4':path_4, 'features':features, 'disp':disp}  # path_1 is 1/2; path_2 is 1/4
+-
+-
+ class Feature(nn.Module):
+     def __init__(self, args):
+         super(Feature, self).__init__()
+         self.args = args
++        # Not supported in timm 0.4.12
+         model = timm.create_model('edgenext_small', pretrained=True, features_only=False)
+         self.stem = model.stem
+         self.stages = model.stages
+         chans = [48, 96, 160, 304]
+         self.chans = chans
+-        self.dino = DepthAnythingFeature(encoder=self.args.vit_size)
+-        self.dino = freeze_model(self.dino)
+-        vit_feat_dim = DepthAnythingFeature.model_configs[self.args.vit_size]['features']//2
++        
++        self.use_lora = getattr(self.args, 'use_lora', False)
++        self.lora_r = getattr(self.args, 'lora_r', 4)
++        print(f'Use LoRA: {self.use_lora}, rank: {self.lora_r}')
++        self.dino = DepthAnythingV2(encoder=self.args.vit_size, use_lora=self.use_lora, lora_rank=self.lora_r)
++        # self.dino = freeze_model(self.dino) # I did it inside the DepthAnythingV2 wrapper
++        vit_feat_dim = DepthAnythingV2.model_configs[self.args.vit_size]['features']//2
+ 
+         self.deconv32_16 = Conv2x_IN(chans[3], chans[2], deconv=True, concat=True)
+         self.deconv16_8 = Conv2x_IN(chans[2]*2, chans[1], deconv=True, concat=True)
+@@ -345,21 +322,33 @@ class Feature(nn.Module):
+         self.patch_size = 14
+         self.d_out = [chans[0]*2+vit_feat_dim, chans[1]*2, chans[2]*2, chans[3]]
+ 
+-    def forward(self, x):
++    def forward(self, x, no_grad=False):
++        # B,T,C,H,W = x.shape
+         B,C,H,W = x.shape
+         divider = np.lcm(self.patch_size, 16)
+         H_resize, W_resize = get_resize_keep_aspect_ratio(H,W, divider=divider, max_H=1344, max_W=1344)
+-        x_in_ = F.interpolate(x, size=(H_resize, W_resize), mode='bicubic', align_corners=False)
+-        self.dino = self.dino.eval()
+-        with torch.no_grad():
++        
++        # x_in_ = F.interpolate(x[:,-1], size=(H_resize, W_resize), mode='bicubic', align_corners=False)
++        x_in_ = F.interpolate(x, size=(H_resize, W_resize), mode='nearest')
++        
++        _grad = torch.no_grad if no_grad or not self.use_lora else DummyNoGrad
++        with _grad():
+           output = self.dino(x_in_)
++          
+         vit_feat = output['out']
+         vit_feat = F.interpolate(vit_feat, size=(H//4,W//4), mode='bilinear', align_corners=True)
+-        x = self.stem(x)
+-        x4 = self.stages[0](x)
+-        x8 = self.stages[1](x4)
+-        x16 = self.stages[2](x8)
+-        x32 = self.stages[3](x16)
++
++        # _x = 0
++        # for t in range(T):
++        #     _x += self.stem(x[:,t])
++        # x = _x / T
++        
++        x = self.stem(x) # type: ignore
++
++        x4 = self.stages[0](x) # type: ignore
++        x8 = self.stages[1](x4) # type: ignore
++        x16 = self.stages[2](x8) # type: ignore
++        x32 = self.stages[3](x16) # type: ignore
+ 
+         x16 = self.deconv32_16(x32, x16)
+         x8 = self.deconv16_8(x16, x8)
+diff --git a/core/foundation_stereo.py b/core/foundation_stereo.py
+index cbbedba..0b3d6af 100644
+--- a/core/foundation_stereo.py
++++ b/core/foundation_stereo.py
+@@ -7,23 +7,29 @@
+ # license agreement from NVIDIA CORPORATION is strictly prohibited.
+ 
+ 
+-import torch,pdb,logging,timm
++import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+-import sys,os
+-code_dir = os.path.dirname(os.path.realpath(__file__))
+-sys.path.append(f'{code_dir}/../')
+-from core.update import *
+-from core.extractor import *
+-from core.geometry import Combined_Geo_Encoding_Volume
+-from core.submodule import *
+-from core.utils.utils import *
+-from Utils import *
+-import time,huggingface_hub
++import sys
++import huggingface_hub
++from torchvision.transforms import Normalize
++from yacs.config import CfgNode as CN
++from types import SimpleNamespace
+ 
++from .update import *
++from .extractor import *
++from .geometry import Combined_Geo_Encoding_Volume
++from .submodule import *
++from .utils.utils import *
++from .myutils import *
++
++from ..nerflosses import image_loss
++
++import os
++import torchvision.utils as vutils
+ 
+ try:
+-    autocast = torch.cuda.amp.autocast
++    autocast = torch.cuda.amp.autocast # type: ignore
+ except:
+     class autocast:
+         def __init__(self, enabled):
+@@ -34,12 +40,42 @@ except:
+             pass
+ 
+ 
+-def normalize_image(img):
++def normalize_image(img, scale_factor = 255.0):
+     '''
+     @img: (B,C,H,W) in range 0-255, RGB order
+     '''
+-    tf = torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)
+-    return tf(img/255.0).contiguous()
++    tf = Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)
++    return tf(img / scale_factor).contiguous()
++
++
++def disp_warping(disp, img, right_disp=False):
++    B, _, H, W = disp.shape
++
++    mycoords_y, mycoords_x = torch.meshgrid(torch.arange(H, dtype=disp.dtype, device=disp.device), torch.arange(W, dtype=disp.dtype, device=disp.device), indexing='ij')
++    mycoords_x = mycoords_x[None].repeat(B, 1, 1).to(disp.device)
++    mycoords_y = mycoords_y[None].repeat(B, 1, 1).to(disp.device)
++
++    if right_disp:
++        grid = 2 * torch.cat([(mycoords_x+disp.squeeze(1)).unsqueeze(-1) / W, mycoords_y.unsqueeze(-1) / H], -1) - 1
++    else:
++        grid = 2 * torch.cat([(mycoords_x-disp.squeeze(1)).unsqueeze(-1) / W, mycoords_y.unsqueeze(-1) / H], -1) - 1
++
++    # grid_sample: B,C,H,W & B H W 2 -> B C H W
++    warped_img = F.grid_sample(img, grid, align_corners=True)
++
++    return warped_img
++
++
++def lrc(disp2, disp3, lrc_th=1.0):
++    """ Left-right consistency check """
++    # disp2: B 1 H W (left)
++    # disp3: B 1 H W (right)
++    # warped_disp3: B 1 H W (left)
++    
++    warped_disp3 = disp_warping(F.relu(disp2), disp3, right_disp=False) # B 1 H W
++
++    error = torch.abs(disp2-warped_disp3)
++    return error < lrc_th
+ 
+ 
+ class hourglass(nn.Module):
+@@ -80,18 +116,18 @@ class hourglass(nn.Module):
+                                    Conv3dNormActReduced(in_channels*2, in_channels*2, kernel_size=3, kernel_disp=17),
+                                    Conv3dNormActReduced(in_channels*2, in_channels*2, kernel_size=3, kernel_disp=17))
+         self.atts = nn.ModuleDict({
+-          "4": CostVolumeDisparityAttention(d_model=in_channels, nhead=4, dim_feedforward=in_channels, norm_first=False, num_transformer=4, max_len=self.cfg['max_disp']//16),
++          "4": CostVolumeDisparityAttention(d_model=in_channels, nhead=4, dim_feedforward=in_channels, norm_first=False, num_transformer=4, max_len=self.cfg.max_disp//16),
+         })
+         self.conv_patch = nn.Sequential(
+           nn.Conv3d(in_channels, in_channels, kernel_size=4, stride=4, padding=0, groups=in_channels),
+           nn.BatchNorm3d(in_channels),
+         )
+ 
+-        self.feature_att_8 = FeatureAtt(in_channels*2, feat_dims[1])
+-        self.feature_att_16 = FeatureAtt(in_channels*4, feat_dims[2])
+-        self.feature_att_32 = FeatureAtt(in_channels*6, feat_dims[3])
+-        self.feature_att_up_16 = FeatureAtt(in_channels*4, feat_dims[2])
+-        self.feature_att_up_8 = FeatureAtt(in_channels*2, feat_dims[1])
++        self.feature_att_8 = FeatureAtt(in_channels*2, feat_dims[1]) # type: ignore
++        self.feature_att_16 = FeatureAtt(in_channels*4, feat_dims[2]) # type: ignore
++        self.feature_att_32 = FeatureAtt(in_channels*6, feat_dims[3]) # type: ignore
++        self.feature_att_up_16 = FeatureAtt(in_channels*4, feat_dims[2]) # type: ignore
++        self.feature_att_up_8 = FeatureAtt(in_channels*2, feat_dims[1]) # type: ignore
+ 
+     def forward(self, x, features):
+         conv1 = self.conv1(x)
+@@ -127,7 +163,15 @@ class hourglass(nn.Module):
+ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
+     def __init__(self, args):
+         super().__init__()
+-        self.args = args
++        
++        # Convert YACS CfgNode to SimpleNamespace
++        if isinstance(args, CN):
++            self.args = SimpleNamespace(**args)
++        else:
++            self.args = args
++        self.args.img_scale_factor = getattr(self.args, 'img_scale_factor', 255.0)
++
++        self.criterion = nn.L1Loss(reduction='none')
+ 
+         context_dims = args.hidden_dims
+         self.cv_group = 8
+@@ -178,7 +222,49 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
+         r = self.args.corr_radius
+         dx = torch.linspace(-r, r, 2*r+1, requires_grad=False).reshape(1, 1, 2*r+1, 1)
+         self.dx = dx
+-
++        
++        self.freeze_lr = False
++        if getattr(self.args, 'freeze_for_finetuning', False):
++            self.freeze_lr = True
++            self.freeze_for_finetuning()
++            print("Foundation Stereo: Model is frozen for fine-tuning", file=sys.stderr)
++
++    def freeze_for_finetuning(self):
++        """ Freeze the model for fine-tuning """
++        for param in self.parameters():
++            param.requires_grad = False
++            
++    def get_params_group(self, learning_rate):
++        def filter_specific_params(kv):
++            specific_layer_name = []
++            for name in specific_layer_name:
++                if name in kv[0]:
++                    return True
++            return False
++
++        def filter_base_params(kv):
++            specific_layer_name = []
++            for name in specific_layer_name:
++                if name in kv[0]:
++                    return False
++            return True
++
++        specific_params = list(filter(filter_specific_params,
++                                      self.named_parameters()))
++        base_params = list(filter(filter_base_params,
++                                  self.named_parameters()))
++
++        specific_params = [kv[1] for kv in specific_params]  # kv is a tuple (key, value)
++        base_params = [kv[1] for kv in base_params]
++
++        learning_rate = learning_rate if not self.freeze_lr else 0.0
++        specific_lr = learning_rate * 0.1
++        params_group = [
++            {'params': base_params, 'lr': learning_rate},
++            {'params': specific_params, 'lr': specific_lr},
++        ]
++
++        return params_group
+ 
+     def upsample_disp(self, disp, mask_feat_4, stem_2x):
+ 
+@@ -191,14 +277,43 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
+         return up_disp.float()
+ 
+ 
+-    def forward(self, image1, image2, iters=12, flow_init=None, test_mode=False, low_memory=False, init_disp=None):
++    def forward(self, left_stack, right_stack, iters=12, flow_init=None, test_mode=False, init_disp=None, lrc_filtering=False, lrc_th=1.0, **kwargs):
+         """ Estimate disparity between pair of frames """
+-        B = len(image1)
+-        low_memory = low_memory or (self.args.get('low_memory', False))
+-        image1 = normalize_image(image1)
+-        image2 = normalize_image(image2)
++        image1 = left_stack
++        image2 = right_stack
++        # B, T, C, H, W = image1.shape
++        B, C, H, W = image1.shape
++        low_memory=False
++        # low_memory = low_memory or (getattr(self.args, 'low_memory', False))
++        
++        if C == 1:
++            image1 = torch.cat([image1, image1, image1], dim=1)
++            image2 = torch.cat([image2, image2, image2], dim=1)
++            
++        # debug_dir = 'tmp/debug_images'
++        # os.makedirs(debug_dir, exist_ok=True)
++
++        # def save_debug_image(tensor, name):
++        #     # Clamp and normalize to [0,1] for saving
++        #     img = tensor.detach().cpu()
++        #     min_val = img.min().item()
++        #     max_val = img.max().item()
++        #     print(f"{name}: min={min_val}, max={max_val}")
++        #     img = (img - min_val) / (max_val - min_val + 1e-5)
++        #     vutils.save_image(img, os.path.join(debug_dir, f"{name}.png"))
++
++        # save_debug_image(image1, "left_stack")
++        # save_debug_image(image2, "right_stack")
++        
++        image1 = normalize_image(image1, scale_factor=self.args.img_scale_factor)
++        image2 = normalize_image(image2, scale_factor=self.args.img_scale_factor)
++
++        # for t in range(T):
++        #     image1[:,t] = normalize_image(image1[:,t])
++        #     image2[:,t] = normalize_image(image2[:,t])
++        
+         with autocast(enabled=self.args.mixed_precision):
+-            out, vit_feat = self.feature(torch.cat([image1, image2], dim=0))
++            out, vit_feat = self.feature(torch.cat([image1, image2], dim=0), no_grad=test_mode)
+             vit_feat = vit_feat[:B]
+             features_left = [o[:B] for o in out]
+             features_right = [o[B:] for o in out]
+@@ -247,29 +362,186 @@ class FoundationStereo(nn.Module, huggingface_hub.PyTorchModelHubMixin):
+             disp_up = self.upsample_disp(disp.float(), mask_feat_4.float(), stem_2x.float())
+             disp_preds.append(disp_up)
+ 
+-
+         if test_mode:
+-            return disp_up
+-
+-        return init_disp, disp_preds
+-
+-
+-    def run_hierachical(self, image1, image2, iters=12, test_mode=False, low_memory=False, small_ratio=0.5):
+-      B,_,H,W = image1.shape
+-      img1_small = F.interpolate(image1, scale_factor=small_ratio, align_corners=False, mode='bilinear')
+-      img2_small = F.interpolate(image2, scale_factor=small_ratio, align_corners=False, mode='bilinear')
+-      padder = InputPadder(img1_small.shape[-2:], divis_by=32, force_square=False)
+-      img1_small, img2_small = padder.pad(img1_small, img2_small)
+-      disp_small = self.forward(img1_small, img2_small, test_mode=True, iters=iters, low_memory=low_memory)
+-      disp_small = padder.unpad(disp_small.float())
+-      disp_small_up = F.interpolate(disp_small, size=(H,W), mode='bilinear', align_corners=True) * 1/small_ratio
+-      disp_small_up = disp_small_up.clip(0, None)
+-
+-      padder = InputPadder(image1.shape[-2:], divis_by=32, force_square=False)
+-      image1, image2, disp_small_up = padder.pad(image1, image2, disp_small_up)
+-      disp_small_up += padder._pad[0]
+-      init_disp = F.interpolate(disp_small_up, scale_factor=0.25, mode='bilinear', align_corners=True) * 0.25   # Init disp will be 1/4
+-      disp = self.forward(image1, image2, iters=iters, test_mode=test_mode, low_memory=low_memory, init_disp=init_disp)
+-      disp = padder.unpad(disp.float())
+-      return disp
++            if lrc_filtering:
++                # Apply left-right consistency filtering
++                disp_left = disp_up.squeeze(1)  # Shape: (B, H, W)
++                
++                # Compute right disparity by flipping images and running inference
++                image1_flipped = torch.flip(image1, dims=[3])
++                image2_flipped = torch.flip(image2, dims=[3])
++                
++                # Use the same preprocessing as for left images
++                with autocast(enabled=self.args.mixed_precision):
++                    out_right, vit_feat_right = self.feature(torch.cat([image2_flipped, image1_flipped], dim=0), no_grad=test_mode)
++                    vit_feat_right = vit_feat_right[:B]
++                    features_right_flipped = [o[:B] for o in out_right]
++                    features_left_flipped = [o[B:] for o in out_right]
++                    stem_2x_right = self.stem_2(image2_flipped)
++
++                    gwc_volume_right = build_gwc_volume(features_right_flipped[0], features_left_flipped[0], self.args.max_disp//4, self.cv_group)
++                    left_tmp_right = self.proj_cmb(features_right_flipped[0])
++                    right_tmp_right = self.proj_cmb(features_left_flipped[0])
++                    concat_volume_right = build_concat_volume(left_tmp_right, right_tmp_right, maxdisp=self.args.max_disp//4)
++                    del left_tmp_right, right_tmp_right
++                    comb_volume_right = torch.cat([gwc_volume_right, concat_volume_right], dim=1)
++                    comb_volume_right = self.corr_stem(comb_volume_right)
++                    comb_volume_right = self.corr_feature_att(comb_volume_right, features_right_flipped[0])
++                    comb_volume_right = self.cost_agg(comb_volume_right, features_right_flipped)
++
++                    prob_right = F.softmax(self.classifier(comb_volume_right).squeeze(1), dim=1)
++                    init_disp_right = disparity_regression(prob_right, self.args.max_disp//4)
++
++                    cnet_list_right = self.cnet(image2_flipped, vit_feat=vit_feat_right, num_layers=self.args.n_gru_layers)
++                    cnet_list_right = list(cnet_list_right)
++                    net_list_right = [torch.tanh(x[0]) for x in cnet_list_right]
++                    inp_list_right = [torch.relu(x[1]) for x in cnet_list_right]
++                    inp_list_right = [self.cam(x) * x for x in inp_list_right]
++                    att_right = [self.sam(x) for x in inp_list_right]
++
++                geo_fn_right = Combined_Geo_Encoding_Volume(features_right_flipped[0].float(), features_left_flipped[0].float(), comb_volume_right.float(), num_levels=self.args.corr_levels, dx=self.dx)
++                b, c, h, w = features_right_flipped[0].shape
++                coords_right = torch.arange(w, dtype=torch.float, device=init_disp_right.device).reshape(1,1,w,1).repeat(b, h, 1, 1)
++                disp_right = init_disp_right.float()
++
++                # GRU iterations for right disparity
++                for itr in range(iters):
++                    disp_right = disp_right.detach()
++                    geo_feat_right = geo_fn_right(disp_right, coords_right, low_memory=low_memory)
++                    with autocast(enabled=self.args.mixed_precision):
++                        net_list_right, mask_feat_4_right, delta_disp_right = self.update_block(net_list_right, inp_list_right, geo_feat_right, disp_right, att_right)
++
++                    disp_right = disp_right + delta_disp_right.float()
++
++                # Upsample right disparity
++                disp_right_up = self.upsample_disp(disp_right.float(), mask_feat_4_right.float(), stem_2x_right.float())
++                disp_right = torch.flip(disp_right_up.squeeze(1), dims=[2])  # Flip back horizontally
++
++                # Apply LRC check
++                lrc_mask = lrc(disp_left.unsqueeze(1), disp_right.unsqueeze(1), lrc_th=lrc_th)  # Shape: (B, 1, H, W)
++                lrc_mask = lrc_mask.squeeze(1)  # Shape: (B, H, W)
++                
++                # Zero out disparities that fail LRC check
++                disp_left_filtered = disp_left * lrc_mask.float()
++                
++                return [disp_left_filtered]
++            else:
++                return [disp_up.squeeze(1)]
++        
++        # Upsample the init_disp to the original resolution
++        down_w = disp.shape[-1] 
++        up_w, up_h = image1.shape[-1], image1.shape[-2]
++
++        init_disp = F.interpolate(init_disp, size=(up_h, up_w), mode='bilinear', align_corners=False)
++        init_disp = init_disp.float() * (up_w / down_w)  # Scale the init_disp to the original width
++
++        _tmp_list = [init_disp] + disp_preds
++        return [x.squeeze(1) for x in _tmp_list]  # Return a list of disparity predictions
++    
++    def print_once(self, message, stderr=False):
++        if not hasattr(self, 'printed_messages'):
++            self.printed_messages = set()
++        if message not in self.printed_messages:
++            if stderr:
++                print(message, file=sys.stderr)
++            else:
++                print(message)
++            self.printed_messages.add(message)
++                
++    def _cal_loss(self, pred_disparity_pyramid, gt_disparity, loss_gamma=0.9, alpha_disp_loss=1.0, alpha_photometric=0.1, confidence=None, rgb_left=None, rgb_right=None, rgb_center=None):
++
++        use_trinocular_loss = rgb_left is not None and rgb_right is not None and rgb_center is not None
++        use_binocular_loss = not use_trinocular_loss and rgb_center is not None and rgb_right is not None
++        # self.print_once(f"Use trinocular loss: {use_trinocular_loss}", stderr=True)
++        # self.print_once(f"Use binocular loss: {use_binocular_loss}", stderr=True)
++        
++        confidence = confidence if confidence is not None else torch.where(gt_disparity > 0, torch.ones_like(gt_disparity), torch.zeros_like(gt_disparity))
++
++        if alpha_disp_loss is None:
++            alpha_disp_loss = 1.0
++        if alpha_photometric is None:
++            alpha_photometric = 0.1
++
++        init_disp = pred_disparity_pyramid[0]
++        pred_disparity_pyramid = pred_disparity_pyramid[1:]
++
++        n_predictions = len(pred_disparity_pyramid)
++        assert n_predictions >= 1
++        flow_loss = 0.0
++
++        # exclude extremly large displacements
++        valid = ((gt_disparity > 0))#.unsqueeze(1)
++        assert valid.shape == gt_disparity.shape, [valid.shape, gt_disparity.shape]
++        assert not torch.isinf(gt_disparity[valid.bool()]).any()
++
++        for i in range(n_predictions):
++            assert not torch.isnan(pred_disparity_pyramid[i]).any() and not torch.isinf(pred_disparity_pyramid[i]).any()
++            # We adjust the loss_gamma so it is consistent for any number of RAFT-Stereo iterations
++            adjusted_loss_gamma = loss_gamma**(15/(n_predictions - 1))
++            i_weight = adjusted_loss_gamma**(n_predictions - i - 1)
++
++            disp_diff = self.criterion(pred_disparity_pyramid[i].unsqueeze(1), gt_disparity)
++            disp_loss = (disp_diff * confidence * valid.float())
++
++            if use_trinocular_loss:
++                photometric_loss = image_loss(
++                    pred_disparity_pyramid[i].unsqueeze(1), rgb_left, rgb_center, rgb_right, 1 - confidence, trinocular=True
++                )
++            elif use_binocular_loss:
++                photometric_loss = image_loss(
++                    pred_disparity_pyramid[i].unsqueeze(1), None, rgb_center, rgb_right, 1 - confidence, trinocular=False
++                )
++            else:
++                photometric_loss = torch.zeros_like(disp_loss)
++            
++            flow_loss += i_weight * (alpha_disp_loss * disp_loss + alpha_photometric * photometric_loss)
++
++        # Add loss for the initial disparity prediction 
++
++        init_disp_loss = self.criterion(init_disp.unsqueeze(1), gt_disparity)
++        init_disp_loss = (init_disp_loss * confidence * valid.float())
++
++        if use_trinocular_loss:
++            init_photometric_loss = image_loss(
++                init_disp.unsqueeze(1), rgb_left, rgb_center, rgb_right, 1 - confidence, trinocular=True
++            )
++        elif use_binocular_loss:
++            init_photometric_loss = image_loss(
++                init_disp.unsqueeze(1), None, rgb_center, rgb_right, 1 - confidence, trinocular=False
++            )
++        else:
++            init_photometric_loss = torch.zeros_like(init_disp_loss)
++
++        flow_loss += alpha_disp_loss * init_disp_loss + alpha_photometric * init_photometric_loss
++        
++        # Check if gt_disparity is not all zeros (except batch dimension)
++        zero_mask = (gt_disparity == 0).all(dim=(1, 2, 3))
++        # Apply the zero mask to the flow_loss (keep dims)
++        # Assume use_binocular_loss used when self supervising -- i.e., no gt
++        if not use_binocular_loss:
++            flow_loss[zero_mask, ...] = 0.0
++
++        return flow_loss
++
++
++    def run_hierachical(self, image1, image2, iters=12, test_mode=False, low_memory=False, small_ratio=0.5, lrc_filtering=False, lrc_th=1.0):
++        # raise NotImplementedError("Hierarchical mode is not implemented for Foundation Stereo")
++    
++        B,_,H,W = image1.shape
++        img1_small = F.interpolate(image1, scale_factor=small_ratio, align_corners=False, mode='bilinear')
++        img2_small = F.interpolate(image2, scale_factor=small_ratio, align_corners=False, mode='bilinear')
++        padder = InputPadder(img1_small.shape[-2:], divis_by=32, force_square=False)
++        img1_small, img2_small = padder.pad(img1_small, img2_small)
++        disp_small = self.forward(img1_small, img2_small, test_mode=True, iters=iters, low_memory=low_memory, lrc_filtering=False, lrc_th=lrc_th)
++        disp_small = padder.unpad(disp_small.float()) # type: ignore
++        disp_small_up = F.interpolate(disp_small, size=(H,W), mode='bilinear', align_corners=True) * 1/small_ratio
++        disp_small_up = disp_small_up.clip(0, None)
++
++        padder = InputPadder(image1.shape[-2:], divis_by=32, force_square=False)
++        image1, image2, disp_small_up = padder.pad(image1, image2, disp_small_up)
++        disp_small_up += padder._pad[0]
++        init_disp = F.interpolate(disp_small_up, scale_factor=0.25, mode='bilinear', align_corners=True) * 0.25   # Init disp will be 1/4
++        disp = self.forward(image1, image2, iters=iters, test_mode=test_mode, low_memory=low_memory, init_disp=init_disp, lrc_filtering=lrc_filtering, lrc_th=lrc_th)
++        disp = padder.unpad(disp.float()) # type: ignore
++        return disp
+ 
+diff --git a/core/geometry.py b/core/geometry.py
+index ae49b4f..1d5906d 100644
+--- a/core/geometry.py
++++ b/core/geometry.py
+@@ -7,12 +7,11 @@
+ # license agreement from NVIDIA CORPORATION is strictly prohibited.
+ 
+ 
+-import torch,pdb,os,sys
++import torch
+ import torch.nn.functional as F
+-from core.utils.utils import bilinear_sampler
+-code_dir = os.path.dirname(os.path.realpath(__file__))
+-sys.path.append(f'{code_dir}/../')
+-from Utils import *
++from .utils.utils import bilinear_sampler
++
++from .myutils import *
+ 
+ class Combined_Geo_Encoding_Volume:
+     def __init__(self, init_fmap1, init_fmap2, geo_volume, num_levels=2, dx=None):
+diff --git a/core/myutils.py b/core/myutils.py
+new file mode 100644
+index 0000000..a8d0287
+--- /dev/null
++++ b/core/myutils.py
+@@ -0,0 +1,109 @@
++import logging,importlib
++from typing import Optional
++import cv2
++import numpy as np
++
++def set_logging_format(level=logging.INFO):
++  importlib.reload(logging)
++  FORMAT = '%(message)s'
++  logging.basicConfig(level=level, format=FORMAT, datefmt='%m-%d|%H:%M:%S')
++
++set_logging_format()
++
++
++
++def set_seed(random_seed):
++  import torch,random
++  np.random.seed(random_seed)
++  random.seed(random_seed)
++  torch.manual_seed(random_seed)
++  torch.cuda.manual_seed_all(random_seed)
++  torch.backends.cudnn.deterministic = True
++  torch.backends.cudnn.benchmark = False
++
++
++def depth2xyzmap(depth:np.ndarray, K, uvs:Optional[np.ndarray]=None, zmin=0.1):
++  invalid_mask = (depth<zmin)
++  H,W = depth.shape[:2]
++  if uvs is None:
++    vs,us = np.meshgrid(np.arange(0,H),np.arange(0,W), sparse=False, indexing='ij')
++    vs = vs.reshape(-1)
++    us = us.reshape(-1)
++  else:
++    uvs = uvs.round().astype(int)
++    us = uvs[:,0]
++    vs = uvs[:,1]
++  zs = depth[vs,us]
++  xs = (us-K[0,2])*zs/K[0,0]
++  ys = (vs-K[1,2])*zs/K[1,1]
++  pts = np.stack((xs.reshape(-1),ys.reshape(-1),zs.reshape(-1)), 1)  #(N,3)
++  xyz_map = np.zeros((H,W,3), dtype=np.float32)
++  xyz_map[vs,us] = pts
++  if invalid_mask.any():
++    xyz_map[invalid_mask] = 0
++  return xyz_map
++
++
++
++def freeze_model(model):
++  model = model.eval()
++  for p in model.parameters():
++    p.requires_grad = False
++  for p in model.buffers():
++    p.requires_grad = False
++  return model
++
++
++
++def get_resize_keep_aspect_ratio(H, W, divider=16, max_H=1232, max_W=1232):
++  assert max_H%divider==0
++  assert max_W%divider==0
++
++  def round_by_divider(x):
++    return int(np.ceil(x/divider)*divider)
++
++  H_resize = round_by_divider(H)   #!NOTE KITTI width=1242
++  W_resize = round_by_divider(W)
++  if H_resize>max_H or W_resize>max_W:
++    if H_resize>W_resize:
++      W_resize = round_by_divider(W_resize*max_H/H_resize)
++      H_resize = max_H
++    else:
++      H_resize = round_by_divider(H_resize*max_W/W_resize)
++      W_resize = max_W
++  return int(H_resize), int(W_resize)
++
++
++def vis_disparity(disp, min_val=None, max_val=None, invalid_thres=np.inf, color_map=cv2.COLORMAP_TURBO, cmap=None, other_output={}):
++  """
++  @disp: np array (H,W)
++  @invalid_thres: > thres is invalid
++  """
++  disp = disp.copy()
++  H,W = disp.shape[:2]
++  invalid_mask = disp>=invalid_thres
++  if (invalid_mask==0).sum()==0:
++    other_output['min_val'] = None
++    other_output['max_val'] = None
++    return np.zeros((H,W,3))
++  if min_val is None:
++    min_val = disp[invalid_mask==0].min()
++  if max_val is None:
++    max_val = disp[invalid_mask==0].max()
++  other_output['min_val'] = min_val
++  other_output['max_val'] = max_val
++  vis = ((disp-min_val)/(max_val-min_val)).clip(0,1) * 255
++  if cmap is None:
++    vis = cv2.applyColorMap(vis.clip(0, 255).astype(np.uint8), color_map)[...,::-1]
++  else:
++    vis = cmap(vis.astype(np.uint8))[...,:3]*255
++  if invalid_mask.any():
++    vis[invalid_mask] = 0
++  return vis.astype(np.uint8)
++
++
++
++def depth_uint8_decoding(depth_uint8, scale=1000):
++  depth_uint8 = depth_uint8.astype(float)
++  out = depth_uint8[...,0]*255*255 + depth_uint8[...,1]*255 + depth_uint8[...,2]
++  return out/float(scale)
+diff --git a/core/submodule.py b/core/submodule.py
+index 1998ba5..68a9bed 100644
+--- a/core/submodule.py
++++ b/core/submodule.py
+@@ -7,16 +7,12 @@
+ # license agreement from NVIDIA CORPORATION is strictly prohibited.
+ 
+ 
+-import torch,pdb,os,sys
++import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+ import numpy as np
+-from einops import rearrange
+-from torch import einsum
+-code_dir = os.path.dirname(os.path.realpath(__file__))
+-sys.path.append(f'{code_dir}/../')
+-from Utils import *
+-from flash_attn import flash_attn_qkvpacked_func, flash_attn_func
++
++from .myutils import *
+ 
+ 
+ def _is_contiguous(tensor: torch.Tensor) -> bool:
+@@ -221,7 +217,7 @@ class FlashMultiheadAttention(nn.Module):
+         K = K.view(K.size(0), K.size(1), self.num_heads, self.head_dim)
+         V = V.view(V.size(0), V.size(1), self.num_heads, self.head_dim)
+ 
+-        attn_output = flash_attn_func(Q, K, V, window_size=window_size)  # Replace with actual FlashAttention function
++        attn_output = F.scaled_dot_product_attention(Q, K, V)
+ 
+         attn_output = attn_output.reshape(B,L,-1)
+         output = self.out_proj(attn_output)
+diff --git a/core/update.py b/core/update.py
+index 907e183..2650da4 100644
+--- a/core/update.py
++++ b/core/update.py
+@@ -7,15 +7,12 @@
+ # license agreement from NVIDIA CORPORATION is strictly prohibited.
+ 
+ 
+-import torch,pdb,os,sys
++import torch
+ import torch.nn as nn
+ import torch.nn.functional as F
+-from einops import rearrange
+-from torch import einsum
+-code_dir = os.path.dirname(os.path.realpath(__file__))
+-sys.path.append(f'{code_dir}/../')
+-from core.submodule import *
+-from core.extractor import *
++
++from .submodule import *
++from .extractor import *
+ 
+ class DispHead(nn.Module):
+     def __init__(self, input_dim=128, hidden_dim=256, output_dim=1):
+diff --git a/scripts/pseudo_labels_dsec.py b/scripts/pseudo_labels_dsec.py
+new file mode 100644
+index 0000000..92264cb
+--- /dev/null
++++ b/scripts/pseudo_labels_dsec.py
+@@ -0,0 +1,143 @@
++import os,sys
++code_dir = os.path.dirname(os.path.realpath(__file__))
++sys.path.append(f'{code_dir}/../')
++from omegaconf import OmegaConf
++from core.utils.utils import InputPadder
++from Utils import *
++from core.foundation_stereo import *
++
++import glob
++import numpy as np
++import cv2
++import tqdm
++
++if __name__=="__main__":
++    code_dir = os.path.dirname(os.path.realpath(__file__))
++    parser = argparse.ArgumentParser()
++
++    parser.add_argument('root', type=str, help='root directory of the dataset DSEC')
++    parser.add_argument('--ckpt_dir', default=f'{code_dir}/../pretrained_models/23-51-11/model_best_bp2.pth', type=str, help='pretrained model path')
++    parser.add_argument('--scale', default=1, type=float, help='downsize the image by scale, must be <=1')
++    parser.add_argument('--hiera', default=0, type=int, help='hierarchical inference (only needed for high-resolution images (>1K))')
++    parser.add_argument('--valid_iters', type=int, default=32, help='number of flow-field updates during forward pass')
++
++    args = parser.parse_args()
++
++    set_logging_format()
++    set_seed(0)
++    torch.autograd.set_grad_enabled(False)
++
++
++    ckpt_dir = args.ckpt_dir
++    cfg = OmegaConf.load(f'{os.path.dirname(ckpt_dir)}/cfg.yaml')
++    if 'vit_size' not in cfg:
++        cfg['vit_size'] = 'vitl'
++    for k in args.__dict__:
++        cfg[k] = args.__dict__[k]
++    args = OmegaConf.create(cfg)
++    logging.info(f"args:\n{args}")
++    logging.info(f"Using pretrained model from {ckpt_dir}")
++
++    model = FoundationStereo(args)
++
++    ckpt = torch.load(ckpt_dir, weights_only = False)
++    logging.info(f"ckpt global_step:{ckpt['global_step']}, epoch:{ckpt['epoch']}")
++    model.load_state_dict(ckpt['model'])
++
++    model.cuda()
++    model.eval()
++
++    code_dir = os.path.dirname(os.path.realpath(__file__))
++
++    seqs = sorted(glob.glob(os.path.join(args.root, "*")))
++
++    for seq in tqdm.tqdm(seqs):
++
++        images_left = sorted(glob.glob(os.path.join(seq, "images", "left", "rectified", "*.png")))
++        images_right = sorted(glob.glob(os.path.join(seq, "images", "right", "rectified", "*.png")))
++
++        assert len(images_left) > 0 and len(images_right) > 0, f"No images found in {seq}"
++        assert len(images_left) == len(images_right), f"Number of left and right images do not match in {seq}"
++
++        output_left = os.path.join(seq, "disparity", "proxy_image", "left")
++        output_right = os.path.join(seq, "disparity", "proxy_image", "right")
++        os.makedirs(output_left, exist_ok=True)
++        # os.makedirs(output_right, exist_ok=True)
++        fx_scale = -1
++
++        for left_file, right_file in tqdm.tqdm(zip(images_left, images_right), total=len(images_left)):
++            output_file = os.path.join(output_left, f"{os.path.basename(left_file)}")
++            if os.path.exists(output_file):
++                logging.info(f"Skipping {output_file}, already exists")
++                continue
++            
++            img0 = imageio.imread(left_file)
++            img1 = imageio.imread(right_file)
++            scale = args.scale
++            H_o,W_o = img0.shape[:2]
++            assert scale<=1, "scale must be <=1"
++            if scale<1:
++                    img0 = cv2.resize(img0, fx=scale, fy=scale, dsize=None)
++                    img1 = cv2.resize(img1, fx=scale, fy=scale, dsize=None)
++
++            if len(img0.shape)==2:
++                    img0 = np.stack([img0]*3, axis=-1)
++                    img1 = np.stack([img1]*3, axis=-1)
++
++            H,W = img0.shape[:2]
++
++            img0_tensor = torch.as_tensor(img0.copy()).cuda().float()[None].permute(0,3,1,2)
++            img1_tensor = torch.as_tensor(img1.copy()).cuda().float()[None].permute(0,3,1,2)
++            padder = InputPadder(img0_tensor.shape, divis_by=32, force_square=False)
++            img0_tensor, img1_tensor = padder.pad(img0_tensor, img1_tensor)
++
++            with torch.cuda.amp.autocast(True):
++                if not args.hiera:
++                    disp = model.forward(img0_tensor, img1_tensor, iters=args.valid_iters, test_mode=True)
++                else:
++                    disp = model.run_hierachical(img0_tensor, img1_tensor, iters=args.valid_iters, test_mode=True, small_ratio=0.5)
++
++            disp = padder.unpad(disp.float())
++            disp = disp.data.cpu().numpy().reshape(H,W)
++            
++            fx_scale = (W_o / W)
++            
++            if scale<1:
++                disp = cv2.resize(disp, fx=1/scale, fy=1/scale, dsize=None, interpolation=cv2.INTER_LINEAR) * (W_o / W)
++
++            # print(disp.min(), disp.max(), np.median(disp), np.mean(disp))
++            disp = np.clip((disp * 128.0), 0, 65535).astype(np.uint16)
++            cv2.imwrite(os.path.join(output_left, f"{os.path.basename(left_file)}"), disp)
++            
++            # basename = ".".join(os.path.basename(left_file).split(".")[:-1])
++            # np.savez_compressed(os.path.join(output_left, f"{basename}.npz"), disp=disp.astype(np.float32))
++
++            # tmp_img = img0
++            # img0 = img1
++            # img1 = tmp_img
++
++            # img0 = np.flip(img0, axis=1)
++            # img1 = np.flip(img1, axis=1)
++
++            # img0_tensor = torch.as_tensor(img0.copy()).cuda().float()[None].permute(0,3,1,2)
++            # img1_tensor = torch.as_tensor(img1.copy()).cuda().float()[None].permute(0,3,1,2)
++            # padder = InputPadder(img0_tensor.shape, divis_by=32, force_square=False)
++            # img0_tensor, img1_tensor = padder.pad(img0_tensor, img1_tensor)
++
++            # with torch.cuda.amp.autocast(True):
++            #     if not args.hiera:
++            #         disp = model.forward(img0_tensor, img1_tensor, iters=args.valid_iters, test_mode=True)
++            #     else:
++            #         disp = model.run_hierachical(img0_tensor, img1_tensor, iters=args.valid_iters, test_mode=True, small_ratio=0.5)
++
++            # disp = padder.unpad(disp.float())
++            # disp = disp.data.cpu().numpy().reshape(H,W)
++            # disp = np.flip(disp, axis=1)
++
++            # disp = cv2.resize(disp, fx=1/scale, fy=1/scale, dsize=None, interpolation=cv2.INTER_LINEAR) * (W_o / W)
++
++            # disp = np.clip((disp * 256.0), 0, 65535).astype(np.uint16)
++            # cv2.imwrite(os.path.join(output_right, f"{os.path.basename(right_file)}"), disp)
++
++
++            #logging.info(f"Finished {seq}, scale={scale}, fx_scale={fx_scale}. Results saved in {output_left}/")
