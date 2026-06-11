@@ -1,11 +1,12 @@
 #!/bin/bash
 
-DATA_ROOT="event-stereo/datasets/dsec"
-DATA_ROOT_VAL="event-stereo/datasets/dsec"
+DATA_ROOT="datasets/dsec"
+DATA_ROOT_VAL="datasets/dsec"
 # compute codebase path from this script location (one level up to event-stereo)
 SCRIPT_DIR="$( dirname "$( realpath "$0" )" )"
 CODEBASE_PATH="$( realpath "$SCRIPT_DIR/../.." )"
-CONDA_PATH="/leonardo_scratch/fast/EUHPC_D35_218/miniconda3/bin/conda"
+USERNAME="$(whoami)"
+CONDA_PATH="/home/${USERNAME}/miniconda3/bin/conda"
 CONDA_ENV=eventhub
 ER="tencode"
 
