@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATA_PATH="event-stereo/datasets/dsec"
+DATA_PATH="datasets/dsec"
 # compute codebase path from this script location (one level up to event-stereo)
 SCRIPT_DIR="$( dirname "$( realpath "$0" )" )"
 CODEBASE_PATH="$( realpath "$SCRIPT_DIR/../.." )"
@@ -8,6 +8,12 @@ USERNAME="$(whoami)"
 CONDA_PATH="/home/${USERNAME}/miniconda3/bin/conda"
 CONDA_ENV=eventhub
 ER=tencode
+
+printf "DATA_PATH: %s\n" "$DATA_PATH"
+printf "CODEBASE_PATH: %s\n" "$CODEBASE_PATH"
+printf "CONDA_PATH: %s\n" "$CONDA_PATH"
+printf "CONDA_ENV: %s\n" "$CONDA_ENV"
+printf "ER: %s\n" "$ER"
 
 cd $CODEBASE_PATH
 eval "$( $CONDA_PATH shell.bash hook)"
