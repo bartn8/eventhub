@@ -3,3 +3,4 @@ snapshots/
 __pycache__/
 .vscode/
 *.pyc
+/event-stereo/datasets/

@@ -38,20 +38,20 @@ class Padding:
             f"Original dimensions: height={ori_height}, width={ori_width}, target dimensions: height={self.img_height}, width={self.img_width}."
 
         # HxWx2xS
-        # sample['left'] = np.lib.pad(sample['left'],
+        # sample['left'] = np.pad(sample['left'],
         #                             ((0, top_pad), (0, right_pad), (0, 0), (0, 0)),
         #                             mode='constant',
         #                             constant_values=self.no_event_value)
-        # sample['right'] = np.lib.pad(sample['right'],
+        # sample['right'] = np.pad(sample['right'],
         #                              ((0, top_pad), (0, right_pad), (0, 0), (0, 0)),
         #                              mode='constant',
         #                              constant_values=self.no_event_value)
 
-        sample['left'] = np.lib.pad(sample['left'],
+        sample['left'] = np.pad(sample['left'],
                                     ((0, top_pad), (0, right_pad), (0, 0)),
                                     mode='constant',
                                     constant_values=self.no_event_value)
-        sample['right'] = np.lib.pad(sample['right'],
+        sample['right'] = np.pad(sample['right'],
                                      ((0, top_pad), (0, right_pad), (0, 0)),
                                      mode='constant',
                                      constant_values=self.no_event_value)

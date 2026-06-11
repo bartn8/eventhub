@@ -24,7 +24,7 @@ class Padding:
         assert top_pad >= 0 and right_pad >= 0, f"Padding must be non-negative. sample.shape={sample.shape}; original (h,w)=({ori_height},{ori_width}), target (h,w)=({self.img_height},{self.img_width}), computed top_pad={top_pad}, right_pad={right_pad}"
 
         if len(sample.shape) == 3:
-            sample = np.lib.pad(sample,
+            sample = np.pad(sample,
                                 ((0, 0), (0, top_pad), (0, right_pad)),
                                 mode='constant',
                                 constant_values=self.no_disparity_value)

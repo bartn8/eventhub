@@ -60,7 +60,7 @@ class EventSlicer(torch.utils.data.Dataset):
         
             events = dict()
             # with h5py.File(self.event_root, 'r') as h5f:
-            events['t'] = np.asarray(h5f['t'][t_start_ns_idx:t_end_ns_idx])# type: ignore
+            events['t'] = np.asarray(h5f['t'][t_start_ns_idx:t_end_ns_idx], dtype=np.uint64)# type: ignore
             for dset_str in ['p', 'x', 'y']:
                 events[dset_str] = np.asarray(h5f[dset_str][t_start_ns_idx:t_end_ns_idx])# type: ignore
                 assert events[dset_str].size == events['t'].size

@@ -175,3 +175,5 @@ onnx_ws/build
 onnx_ws/onnxruntime-*
 
 *.pyc
+trainings/
+results/

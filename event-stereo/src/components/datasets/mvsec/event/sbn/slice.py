@@ -82,14 +82,14 @@ class EventSlicer(torch.utils.data.Dataset):
             t_end_ns_idx = min(self.total_event, t_end_ns_idx)# type: ignore
 
             events = dict()
-            events['t'] = np.asarray(t[t_start_ns_idx:t_end_ns_idx])  # type: ignore
+            events['t'] = np.asarray(t[t_start_ns_idx:t_end_ns_idx], dtype=np.uint64)  # type: ignore
             events['x'] = np.asarray(h5f[f'davis/{self.location}/events'][t_start_ns_idx:t_end_ns_idx,0]).astype(np.int32)  # type: ignore
             events['y'] = np.asarray(h5f[f'davis/{self.location}/events'][t_start_ns_idx:t_end_ns_idx,1]).astype(np.int32)  # type: ignore
             events['p'] = np.asarray(h5f[f'davis/{self.location}/events'][t_start_ns_idx:t_end_ns_idx,3]).astype(np.int8)  # type: ignore
             
             # Convert timestamp
-            events['t'] = events['t'] - self.t_offset
-            events['t'] = (events['t'] * 1e6).astype(np.int64)  # Convert to us unit
+            events['t'] = events['t'] - np.uint64(self.t_offset)
+            events['t'] = (events['t'] * np.uint64(1e6)).astype(np.uint64)  # Convert to us unit
 
             #Normalize polarity to [0, 1]
             if len(events['p']) > 0:
