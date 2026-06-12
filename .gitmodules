@@ -4,3 +4,6 @@
 [submodule "FoundationStereo"]
 	path = FoundationStereo
 	url = https://github.com/NVlabs/FoundationStereo.git
+[submodule "rpg_vid2e"]
+	path = rpg_vid2e
+	url = https://github.com/uzh-rpg/rpg_vid2e.git
