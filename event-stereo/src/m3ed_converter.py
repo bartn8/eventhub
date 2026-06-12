@@ -66,16 +66,16 @@ def main(args):
     input_paths = args.input_folder
     output_path = args.output_folder
     delete = args.delete
-    ignore_glob = args.ignore_glob
+    # ignore_glob = args.ignore_glob
     ignore_h5 = args.ignore_h5
 
     #Search for valid pair of data+depth_gt
-    if ignore_glob:
-        data_glob = input_paths
-    else:
-        data_glob = []
-        for input_path in input_paths:
-            data_glob += sorted(glob.glob(os.path.join(input_path, "*/*_data.h5")))
+    # if ignore_glob:
+    #     data_glob = input_paths
+    # else:
+    data_glob = []
+    for input_path in input_paths:
+        data_glob += sorted(glob.glob(os.path.join(input_path, "*/*_data.h5")))
 
     data_list = []
     gt_list = []
@@ -400,14 +400,16 @@ if __name__ == '__main__':
         "-i",
         "--input_folder",
         required=True,
-        nargs='+',
-        help="""Input folder containinbg a list of folder and for each folder a p\
+        # nargs='+',
+        default="datasets/M3ED/raw",
+        help="""Input folder containing a list of folder and for each folder a p\
                 air of *_data.h5 and *_depth_gt.h5"""
     )
     parser.add_argument(
         "-o",
         "--output_folder",
         required=True,
+        default="datasets/M3ED/processed",
         help="""Output folder where modified files will be moved from original source folder"""
     )
     parser.add_argument(
@@ -416,11 +418,11 @@ if __name__ == '__main__':
         action='store_true',
         help="""Delete original files"""
     )
-    parser.add_argument(
-        "--ignore_glob",
-        action='store_true',
-        help="""Ignore glob"""
-    )
+    # parser.add_argument(
+    #     "--ignore_glob",
+    #     action='store_true',
+    #     help="""Ignore glob"""
+    # )
     parser.add_argument(
         "--ignore_h5",
         action='store_true',

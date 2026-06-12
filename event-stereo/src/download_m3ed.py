@@ -59,15 +59,7 @@ _OUTDOOR_DAY_LIST = [
     # 'spot_outdoor_day_srt_under_bridge_2',
 ]
 
-WHITE_LIST = _OUTDOOR_DAY_LIST
-
-_OLD_WHITE_LIST = [
-    'car_forest_tree_tunnel',
-    'car_urban_day_penno_small_loop',
-    'falcon_indoor_flight_1',
-    'falcon_indoor_flight_2',
-    'falcon_indoor_flight_3'
-]
+WHITE_LIST = _OUTDOOR_DAY_LIST + _OUTDOOR_NIGHT_LIST + _INDOOR_LIST
 
 def aws_url(filename, suffix):
     return f"{BASE_URL}/processed/{filename}/{filename}_{suffix}"
@@ -182,38 +174,45 @@ class M3ED_Data_File(M3ED_File):
                                                         "semantics.avi")
 
 if __name__ == "__main__":
-    valid_data = ["data", "data_videos", "depth_gt", "pose_gt",
-                  "gt_vids", "semantics", "semantics_vids",
-                  "global_pcd", "raw_data"]
+    # valid_data = ["data", "data_videos", "depth_gt", "pose_gt",
+    #               "gt_vids", "semantics", "semantics_vids",
+    #               "global_pcd", "raw_data"]
     
+    valid_data = ["data", "depth_gt"]
+
     import argparse
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--vehicle", required=False,
-                        help="Type of vehicle to download: car, " +
-                             "falcon, spot. If not provided, all " +
-                             "vehicles will be downloaded")
-    parser.add_argument("--environment", required=False,
-                        help="Type of environment to download: urban, " +
-                             "indoor, forest, outdoor. If not provided, " +
-                             "all environments will be downloaded")
-    parser.add_argument("--to_download", nargs='+', required=False,
-                        help=f"Data to download: {', '.join(valid_data)}")
-    parser.add_argument("--train_test", required=False,
-                        help="Train or test data to download: train, test. " +
-                        "If not provided, both train and " +
-                        "test will be downloaded")
+    # parser.add_argument("--vehicle", required=False,
+    #                     help="Type of vehicle to download: car, " +
+    #                          "falcon, spot. If not provided, all " +
+    #                          "vehicles will be downloaded")
+    # parser.add_argument("--environment", required=False,
+    #                     help="Type of environment to download: urban, " +
+    #                          "indoor, forest, outdoor. If not provided, " +
+    #                          "all environments will be downloaded")
+    # parser.add_argument("--to_download", nargs='+', required=False,
+    #                     help=f"Data to download: {', '.join(valid_data)}")
+    # parser.add_argument("--train_test", required=False,
+    #                     help="Train or test data to download: train, test. " +
+    #                     "If not provided, both train and " +
+    #                     "test will be downloaded")
     parser.add_argument("--yaml", required=False,
                         help="Path to dataset_lists.yaml. " +
                         "If not provided, it will be downloaded " +
                         "from the repository")
-    parser.add_argument("--output_dir", required=False, default="output",
+    parser.add_argument("--output_dir", required=False, default="datasets/M3ED/raw",
                         help="Output directory to download the data")
     parser.add_argument("--no_download", action="store_true",
                         help="Do not download the data, " +
                         "just print the list of files")
     
     args = parser.parse_args()
+
+    args.train_test = "both"  
+    args.to_download = None
+    args.environment = None
+    args.vehicle = None
 
     # Check arguments
     if args.output_dir is None:
