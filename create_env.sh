@@ -22,3 +22,4 @@ conda install nvidia::cuda-toolkit==12.8.1 nvidia::cuda-nvcc==12.8.93
 CUDA_ARCHITECTURES="80;90" pip install git+https://github.com/rahul-goel/fused-ssim/ --no-build-isolation
 TORCH_CUDA_ARCH_LIST="8.0;9.0" pip install torch-scatter --no-build-isolation
 #TORCH_CUDA_ARCH_LIST="8.0;9.0" pip install ./event-stereo/src/components/models/baseline/deform_conv --no-build-isolation
+TORCH_CUDA_ARCH_LIST="8.0;9.0" pip install ./rpg_vid2e/esim_torch/ --no-build-isolation
