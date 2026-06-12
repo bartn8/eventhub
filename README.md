@@ -403,7 +403,7 @@ Training scripts for all configurations are available at `scripts/train/{mix1,mi
 **Key config sections** (YACS-based, in `configs/train/`):
 - `MODEL.backbone`: `"FoundationStereo"`, `"StereoAnywhere"`, or `StereoMatchingNetwork` (baseline)
 - `MODEL.PARAMS.skip_concentration_net`: `True` for Tencode (3-channel), `False` for multi-bin event stacks
-- `DATASET.TRAIN.NAME`: typically `nsd` (EventHub data)
+- `DATASET.TRAIN.NAME`: typically `nsd` (EventHub data, MIX 1)
 - `DATASET.TEST.NAME`: typically `dsec` for validation
 
 ### Evaluation
