@@ -1,19 +1,21 @@
 #!/bin/sh
 
 # Based on nerfstereo (NSD) training config.
-# Required env vars: VENV_PATH, CODEBASE_PATH, DATASET_PATH, OUTPUT_PATH, MAST3R_REPO_PATH
+# Required env vars: CODEBASE_PATH, DATASET_PATH, OUTPUT_PATH, MAST3R_REPO_PATH
 
 set -eu
 
-: "${VENV_PATH:?Set VENV_PATH to your venv activate script}"
 : "${CODEBASE_PATH:?Set CODEBASE_PATH to the svraster codebase}"
 : "${DATASET_PATH:?Set DATASET_PATH to the nerfstereo dataset root}"
 : "${OUTPUT_PATH:?Set OUTPUT_PATH to the svraster outputs root}"
 # : "${MAST3R_REPO_PATH:?Set MAST3R_REPO_PATH to the mast3r repo}"
 
 # Activate the venv environment
-# shellcheck disable=SC1090
-. "$VENV_PATH"
+USERNAME="$(whoami)"
+CONDA_PATH="/home/${USERNAME}/miniconda3/bin/conda"
+CONDA_ENV=eventhub
+eval "$( $CONDA_PATH shell.bash hook)"
+conda activate $CONDA_ENV
 
 # Create the output directory if it doesn't exist
 mkdir -p "$OUTPUT_PATH"

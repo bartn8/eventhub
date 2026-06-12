@@ -1,11 +1,10 @@
 #!/bin/sh
 
 # Clean local run script (no slurm, no workers). Uses GEN3 config.
-# Required env vars: VENV_PATH, CODEBASE_PATH, DATASET_PATH, DATASET_MESH_PATH, OUTPUT_PATH
+# Required env vars: CODEBASE_PATH, DATASET_PATH, DATASET_MESH_PATH, OUTPUT_PATH
 
 set -eu
 
-: "${VENV_PATH:?Set VENV_PATH to your venv activate script}"
 : "${CODEBASE_PATH:?Set CODEBASE_PATH to the svraster codebase}"
 : "${DATASET_PATH:?Set DATASET_PATH to the scannet++_train_nvs_svraster root}"
 : "${DATASET_MESH_PATH:?Set DATASET_MESH_PATH to the scannet++_train_nvs root}"
@@ -71,8 +70,11 @@ FIXED_ARGS="$FIXED_ARGS --rnd_invert_t"
 FIXED_ARGS="$FIXED_ARGS --spline_offset -0.1"
 
 # Activate the venv environment
-# shellcheck disable=SC1090
-. "$VENV_PATH"
+USERNAME="$(whoami)"
+CONDA_PATH="/home/${USERNAME}/miniconda3/bin/conda"
+CONDA_ENV=eventhub
+eval "$( $CONDA_PATH shell.bash hook)"
+conda activate $CONDA_ENV
 
 # Change to the codebase directory
 cd "$CODEBASE_PATH"

@@ -1,5 +1,11 @@
-conda create -n eventhub python=3.10 -y
-conda activate eventhub
+# Activate the venv environment
+USERNAME="$(whoami)"
+CONDA_PATH="/home/${USERNAME}/miniconda3/bin/conda"
+CONDA_ENV=eventhub
+eval "$( $CONDA_PATH shell.bash hook)"
+
+conda create -n $CONDA_ENV python=3.10 -y
+conda activate $CONDA_ENV
 
 pip install torch==2.10.0 torchvision==0.25.0 torchaudio==2.10.0 --index-url https://download.pytorch.org/whl/cu128
 
