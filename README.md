@@ -134,7 +134,7 @@ This installs PyTorch 2.10.0+cu128, CUDA toolkit 12.8.1, and all required packag
 ```bash
 # SVRaster sparse voxel rasterizer
 cd svraster
-pip install -e cuda/
+TORCH_CUDA_ARCH_LIST="8.0;9.0" pip install -e cuda/ --no-build-isolation
 cd ..
 
 # (Optional) Deformable convolution for the baseline stereo network. Not used since are replaced by the internal PyTorch implementation

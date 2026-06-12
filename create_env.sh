@@ -23,3 +23,4 @@ CUDA_ARCHITECTURES="80;90" pip install git+https://github.com/rahul-goel/fused-s
 TORCH_CUDA_ARCH_LIST="8.0;9.0" pip install torch-scatter --no-build-isolation
 #TORCH_CUDA_ARCH_LIST="8.0;9.0" pip install ./event-stereo/src/components/models/baseline/deform_conv --no-build-isolation
 TORCH_CUDA_ARCH_LIST="8.0;9.0" pip install ./rpg_vid2e/esim_torch/ --no-build-isolation
+TORCH_CUDA_ARCH_LIST="8.0;9.0" pip install -e cuda/ --no-build-isolation
